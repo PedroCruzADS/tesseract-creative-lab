@@ -99,6 +99,19 @@ Não force um renderer só porque está instalado.
 - Gere stills/Studio preview antes do render final.
 - Use Remotion quando a reutilização do template, React ou batch rendering tiver vantagem real.
 
+## Cloud render
+
+Quando o projeto puder ser renderizado por HyperFrames ou Remotion em Linux, ele deve nascer cloud-renderable.
+
+- Leia `docs/CLOUD-RENDER.md`.
+- Gere `outputs/<slug>/cloud-render.sh` junto com o código da peça.
+- O script deve respeitar `CREATIVE_FORMAT` e `CREATIVE_QUALITY`.
+- O output obrigatório é `.cloud-render/preview.mp4`.
+- Não dependa de Tesseract CLI no GitHub Actions.
+- Não busque assets voláteis durante o render; use mídia congelada/versionada no job.
+- Preview prioriza iteração; final só depois dos gates de QA.
+- O workflow deve conseguir gerar poster, filmstrip e metadata sem intervenção manual.
+
 ## Variações
 
 Depois da master:
