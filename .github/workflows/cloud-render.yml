@@ -6,6 +6,7 @@ on:
       slug:
         description: "Slug em outputs/<slug>/"
         required: true
+        default: "cdf-busca-categorias"
         type: string
       format:
         description: "Formato"
@@ -19,18 +20,30 @@ on:
         default: "preview"
         type: choice
         options: ["preview", "final"]
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/cloud-render.yml"
+      - "outputs/cdf-busca-categorias/cloud-render.sh"
+      - "outputs/cdf-busca-categorias/projeto/cloud/**"
 
 permissions:
   contents: read
-
-concurrency:
-  group: cloud-render-${{ inputs.slug }}-${{ inputs.format }}
-  cancel-in-progress: true
 
 jobs:
   render:
     runs-on: ubuntu-latest
     timeout-minutes: 35
+    env:
+      CREATIVE_SLUG: ${{ github.event.inputs.slug || 'cdf-busca-categorias' }}
+      CREATIVE_FORMAT: ${{ github.event.inputs.format || '9x16' }}
+      CREATIVE_QUALITY: ${{ github.event.inputs.quality || 'preview' }}
+      TESSERACT_CLOUD: "1"
+
+    concurrency:
+      group: cloud-render-${{ github.event.inputs.slug || 'cdf-busca-categorias' }}-${{ github.event.inputs.format || '9x16' }}
+      cancel-in-progress: true
+
     steps:
       - uses: actions/checkout@v4
 
@@ -51,10 +64,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          case "${{ inputs.slug }}" in
+          case "$CREATIVE_SLUG" in
             *[!A-Za-z0-9_-]*|'') echo "Invalid slug"; exit 2 ;;
           esac
-          TARGET="outputs/${{ inputs.slug }}/cloud-render.sh"
+          TARGET="outputs/$CREATIVE_SLUG/cloud-render.sh"
           test -f "$TARGET" || {
             echo "Missing $TARGET"
             echo "The creative must provide a versioned cloud-render.sh."
@@ -63,15 +76,10 @@ jobs:
 
       - name: Render
         shell: bash
-        env:
-          CREATIVE_SLUG: ${{ inputs.slug }}
-          CREATIVE_FORMAT: ${{ inputs.format }}
-          CREATIVE_QUALITY: ${{ inputs.quality }}
-          TESSERACT_CLOUD: "1"
         run: |
           set -euo pipefail
           mkdir -p .cloud-render
-          bash "outputs/${CREATIVE_SLUG}/cloud-render.sh"
+          bash "outputs/$CREATIVE_SLUG/cloud-render.sh"
           test -s .cloud-render/preview.mp4 || {
             echo "cloud-render.sh must produce .cloud-render/preview.mp4"
             exit 4
@@ -87,7 +95,7 @@ jobs:
           {
             echo "# Tesseract Lab — cloud render"
             echo
-            echo "✅ **${{ inputs.slug }}** · \`${{ inputs.format }}\` · \`${{ inputs.quality }}\`"
+            echo "✅ **$CREATIVE_SLUG** · `$CREATIVE_FORMAT` · `$CREATIVE_QUALITY`"
             echo
             echo "O artifact desta execução contém o MP4, poster, filmstrip e metadata."
           } > .cloud-render/summary.md
@@ -102,7 +110,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: tesseract-${{ inputs.slug }}-${{ inputs.format }}-${{ inputs.quality }}
+          name: tesseract-${{ env.CREATIVE_SLUG }}-${{ env.CREATIVE_FORMAT }}-${{ env.CREATIVE_QUALITY }}
           path: .cloud-render/
           if-no-files-found: error
           retention-days: 14
