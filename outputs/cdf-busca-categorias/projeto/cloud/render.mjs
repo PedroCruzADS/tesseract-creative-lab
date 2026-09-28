@@ -66,6 +66,7 @@ await page.goto(pathToFileURL(resolve(here,'index.html')).href,{waitUntil:'load'
 await page.evaluate(async(s)=>{
   document.getElementById('stage').style.transform='scale('+s+')';
   await Promise.all(Array.from(document.images).map(img=>img.complete?Promise.resolve():new Promise(r=>{img.onload=r;img.onerror=r})));
+  if (document.fonts && document.fonts.ready) await document.fonts.ready;
 },scale);
 
 for(let i=0;i<totalFrames;i++){
