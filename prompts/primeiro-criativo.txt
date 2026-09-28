@@ -13,4 +13,4 @@ Requisitos:
 - gerar preview e filmstrip antes do export;
 - revisar o filmstrip e corrigir problemas antes de exportar.
 
-Entregue o projeto editável .tsrct e o MP4 final dentro de outputs/.
+Entregue o projeto editável .tsrct e o MP4 final em outputs/<slug>/, seguindo docs/NAMING.md.

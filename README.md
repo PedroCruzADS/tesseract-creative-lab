@@ -61,7 +61,7 @@ assets/      assets reais e referências
 briefs/      briefs e template
 data/        snapshots comerciais
 docs/        workflow, QA, playbooks e guardrails
-outputs/     projetos .tsrct, previews e MP4s
+outputs/     uma pasta por peça: versão atual na raiz, anteriores em versoes/
 prompts/     prompts reutilizáveis
 schemas/     exemplos de estruturas de dados
 scripts/     setup, ingestão e utilitários

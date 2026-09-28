@@ -13,3 +13,7 @@ Thumbs.db
 # downloads / setup scratch
 .tmp/
 downloads/
+
+# python
+__pycache__/
+*.pyc

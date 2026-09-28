@@ -2,6 +2,8 @@
 
 Checklist obrigatório antes de considerar uma peça pronta.
 
+Para critérios operacionais de grade, padding, alinhamento, ocupação do card e adaptação entre formatos, usar também `docs/COMPOSITION-QA.md`.
+
 ## Produto
 - produto corresponde exatamente aos assets;
 - proporção não distorce o item;
@@ -21,6 +23,8 @@ Checklist obrigatório antes de considerar uma peça pronta.
 - CTA legível;
 - contraste suficiente;
 - safe areas respeitadas;
+- em Meta 9:16, conteúdo crítico entre y=250 e y=1670 no canvas 1080×1920, salvo prévia específica mais restritiva;
+- parcelamento e PIX com hierarquia distinta quando a parcela for a oferta principal;
 - sem texto cortado;
 - logo íntegro;
 - hierarquia clara.

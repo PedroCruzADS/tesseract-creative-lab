@@ -8,8 +8,9 @@ Leia:
 1. `docs/WORKFLOW.md`
 2. `docs/OFFER-TRUTH.md`
 3. `docs/QA-PAID-MEDIA.md`
-4. o brief específico
-5. o snapshot comercial associado, quando existir
+4. `docs/COMPOSITION-QA.md`
+5. o brief específico
+6. o snapshot comercial associado, quando existir
 
 Inspecione visualmente os assets autorizados.
 
@@ -77,13 +78,15 @@ Não trate especificações de plataforma como permanentes; confirme requisitos 
 
 ## Entrega
 
-A versão final deve conter, quando aplicável:
-- `Project.tsrct`
-- `Project.mp4`
-- `Previews/Filmstrip.png`
-- `brief.md`
-- `offer.json`
-- `notes.md`
+Estrutura obrigatória em `docs/NAMING.md`: **uma pasta por peça** (`outputs/<slug>/`), todos os formatos juntos, raiz só com a versão atual e anteriores em `versoes/vNN/`. Nunca crie pasta nova por formato ou versão.
+
+A versão deve conter, quando aplicável:
+- `<slug>_<formato>_vNN.mp4` (e `.gif` se pedido) para cada formato
+- `projeto/<formato>.tsrct`
+- `previews/filmstrip_<formato>.png`
+- `brief.md`, `offer.json`, `notes.md`, `versao.txt`
+
+Ajuste fino regrava a versão atual; nova versão arquiva a atual antes (`scripts/lab_versions.py`).
 
 Ao final, informe:
 - MP4;

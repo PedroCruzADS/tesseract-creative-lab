@@ -12,6 +12,7 @@ Nunca inferir preço, desconto, parcelamento, frete, estoque, cupom ou benefíci
 4. Preencher o brief usando `briefs/TEMPLATE.md`.
 
 ## 3. Produção
+- aplicar a grade e o gate visual de `docs/COMPOSITION-QA.md` para cada formato;
 - abrir no Claude Code/Codex;
 - ler `AGENTS.md`;
 - instalar/verificar Tesseract;
@@ -31,10 +32,10 @@ Depois de aprovar a master:
 - preservar produto e condições.
 
 ## 5. Entrega
-Cada peça deve conter:
-- projeto `.tsrct`;
-- MP4 final;
-- filmstrip;
-- brief usado;
-- snapshot comercial usado;
-- notas da versão.
+Uma pasta por peça em `outputs/<slug>/`, com todos os formatos juntos (ver `docs/NAMING.md`):
+- MP4 (e GIF, se pedido) de cada formato na raiz: `<slug>_<formato>_vNN.mp4`;
+- projetos `.tsrct` em `projeto/`;
+- filmstrips em `previews/`;
+- brief, snapshot comercial (`offer.json`) e notas da versão.
+
+Ajustes finos regravam a versão atual. Nova versão arquiva a atual em `versoes/vNN/`.
