@@ -34,7 +34,7 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#07070a;fon
 .card img{position:absolute;left:20px;top:30px;width:160px;height:126px;object-fit:contain;mix-blend-mode:multiply}
 .card .label{position:absolute;left:8px;right:8px;bottom:20px;text-align:center;font-weight:800;font-size:21px}
 .icon{position:absolute;left:38px;top:50px;width:124px;height:92px}
-.offer{position:absolute;left:350px;top:955px;width:380px;height:52px;text-align:center;font-size:28px;font-weight:800;color:#e4e854;letter-spacing:.02em}
+.offer{position:absolute;left:370px;top:944px;width:340px;min-height:70px;text-align:center;font-size:27px;line-height:1.08;font-weight:800;color:#e4e854;letter-spacing:.01em;display:flex;align-items:center;justify-content:center}
 .offer-note{position:absolute;left:125px;top:1530px;width:830px;text-align:center;font-size:25px;color:rgba(255,255,255,.86)}
 .end{background:linear-gradient(155deg,#07070a 0%,#290410 48%,#e50914 83%,#fb3a15 100%);text-align:center}
 .wordmark{position:absolute;top:520px;left:140px;width:800px;font-size:48px;font-weight:900;letter-spacing:.04em}
@@ -64,7 +64,7 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#07070a;fon
     <div class="orbit-title">Tudo para montar seu espaço fitness.</div>
     <div class="orbit-kicker">Escolha a categoria e encontre o equipamento certo.</div>
     <div class="orbit-ring"></div>
-    <div class="hub"><div><strong>ESCOLHA<br>SEU TREINO</strong><small>CASA DO FITNESS</small></div></div>
+    <div class="hub"><div id="hubBase"><strong>ESCOLHA<br>SEU TREINO</strong><small>CASA DO FITNESS</small></div></div>
     <div id="cards"></div>
     <div id="offer" class="offer"></div>
     <div class="offer-note">*Consulte condições e disponibilidade no site.</div>
@@ -106,7 +106,7 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#07070a;fon
   const set=(el,o)=>{for(const k in o) el.style[k]=o[k]};
   const s1=document.getElementById('s1'),s2=document.getElementById('s2'),s3=document.getElementById('s3');
   const typed=document.getElementById('typed'),progress=document.getElementById('progress'),cta=document.getElementById('cta1');
-  const cursor=document.getElementById('cursor1'),offer=document.getElementById('offer'),domain=document.getElementById('domain'),wipe=document.getElementById('wipe');
+  const cursor=document.getElementById('cursor1'),offer=document.getElementById('offer'),hubBase=document.getElementById('hubBase'),domain=document.getElementById('domain'),wipe=document.getElementById('wipe');
   const phrase='esteira para casa';
   const offers=['ATÉ 18X SEM JUROS','5% OFF NO PIX','FRETE GRÁTIS ACIMA DE R$ 10 MIL'];
   window.seek=(t)=>{
@@ -129,13 +129,17 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#07070a;fon
         set(el,{left:x+'px',top:y+'px',opacity:entry,transform:'scale('+(0.88+0.12*entry)*pulse+')'});
       });
       let text='';
-      const offerStart=3.85;
-      if(lt>=offerStart){
-        const idx=Math.min(offers.length-1,Math.floor((lt-offerStart)/1.05));
+      const offerStart=3.85, offerSpan=1.05, offerEnd=offerStart+offers.length*offerSpan;
+      if(lt>=offerStart&&lt<offerEnd){
+        const idx=Math.floor((lt-offerStart)/offerSpan);
         text=offers[idx];
-        const local=(lt-offerStart)%1.05;
-        offer.style.opacity=Math.min(1,local/.18,(1.05-local)/.16);
-      } else offer.style.opacity=0;
+        const local=(lt-offerStart)%offerSpan;
+        offer.style.opacity=Math.max(0,Math.min(1,local/.18,(offerSpan-local)/.16));
+        hubBase.style.opacity=0;
+      } else {
+        offer.style.opacity=0;
+        hubBase.style.opacity=1;
+      }
       offer.textContent=text;
     }
     if(t>=t2){
