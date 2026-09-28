@@ -12,9 +12,12 @@ Leia, nesta ordem:
 3. `docs/OFFER-TRUTH.md`
 4. `docs/QA-PAID-MEDIA.md`
 5. `docs/COMPOSITION-QA.md` quando aplicável
-6. o brief específico
-7. o snapshot comercial associado, quando existir
-8. `docs/REFERENCE-DIRECTION.md` se houver referências
+6. `docs/MOTION-GRAMMAR.md` para vídeo/motion
+7. `docs/COPY-GUARDRAILS.md`
+8. `docs/REFERENCE-SOURCES.md` quando houver referência
+9. o brief específico
+10. o snapshot comercial associado, quando existir
+11. `docs/REFERENCE-DIRECTION.md` se houver referências
 
 Inspecione visualmente os assets autorizados.
 
@@ -70,11 +73,12 @@ Não force um renderer só porque está instalado.
 9. Escolha renderer e registre a decisão.
 10. Construa a master.
 11. Gere preview/filmstrip/snapshots adequados ao renderer.
-12. Faça QA visual e comercial.
-13. Aplique notas de direção específicas.
-14. Exporte master.
-15. Só então crie adaptações 9:16, 4:5 e 1:1 e variações de hipótese.
-16. Retenha brief, snapshot, storyboard, stills, projeto/código e notas.
+12. Rode o Creative Critic com `prompts/creative-critic.txt` e corrija flags `block`/`revise` justificadas.
+13. Faça QA visual e comercial.
+14. Aplique notas de direção específicas.
+15. Exporte master.
+16. Só então crie adaptações 9:16, 4:5 e 1:1 e variações de hipótese.
+17. Retenha brief, snapshot, storyboard, stills, projeto/código e notas.
 
 ## Particularidades por renderer
 
