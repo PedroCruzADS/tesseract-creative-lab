@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#07070a;font-family:Arial,Helvetica,sans-serif}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;transform-origin:0 0;background:#09090d;color:#fff}
+.scene{position:absolute;inset:0;will-change:transform,opacity}
+.bg-brand{background:linear-gradient(145deg,#09090d 0%,#310414 35%,#e50914 72%,#fb3915 92%,#e4e854 115%)}
+.browser{position:absolute;left:74px;top:300px;width:932px;height:1138px;background:#fff;border-radius:52px;box-shadow:0 34px 80px rgba(0,0,0,.3);overflow:hidden}
+.toolbar{height:102px;background:#f5f4f1;display:flex;align-items:center;padding:0 42px;gap:16px}
+.dot{width:14px;height:14px;border-radius:50%;background:#d7d9dd}.dot.red{background:#e50914}
+.address{margin-left:56px;width:602px;height:52px;background:#fff;border:1px solid #ececec;border-radius:28px;color:#777;display:flex;align-items:center;padding:0 30px;font-size:29px}
+.brand-pill{position:absolute;top:164px;left:285px;width:360px;height:104px;border-radius:54px;background:linear-gradient(135deg,#fa222e,#b50012);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:30px;letter-spacing:.02em}
+.headline{position:absolute;top:318px;left:90px;width:752px;text-align:center;color:#0b0b0d;font-weight:800;font-size:66px;line-height:1.04}
+.sub{position:absolute;top:504px;left:100px;width:732px;text-align:center;color:#56585e;font-size:29px;line-height:1.35}
+.search{position:absolute;left:55px;top:610px;width:820px;height:142px;border-radius:74px;background:#fff;box-shadow:0 18px 38px rgba(16,18,22,.17);border:2px solid #f0f0f0;display:flex;align-items:center;padding:0 58px 0 132px;color:#111;font-size:41px;font-weight:600}
+.search-icon{position:absolute;left:101px;top:657px;width:40px;height:40px;border:7px solid #e50914;border-radius:50%}
+.search-icon:after{content:"";position:absolute;width:28px;height:7px;background:#e50914;right:-23px;bottom:-10px;transform:rotate(45deg);border-radius:4px}
+.progress{position:absolute;left:95px;top:748px;height:5px;width:740px;background:#e50914;border-radius:4px;transform-origin:left center}
+.cta{position:absolute;left:270px;top:864px;width:390px;height:104px;border-radius:54px;background:#e50914;color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:800;letter-spacing:.08em}
+.cursor{position:absolute;width:34px;height:48px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.cursor svg{width:100%;height:100%}
+.orbit-scene{background:linear-gradient(160deg,#09090d 0%,#380314 31%,#e50914 70%,#fb3915 100%)}
+.orbit-title{position:absolute;left:90px;top:270px;width:900px;text-align:center;font-size:64px;line-height:1.05;font-weight:800}
+.orbit-kicker{position:absolute;left:140px;top:426px;width:800px;text-align:center;font-size:29px;color:rgba(255,255,255,.8)}
+.orbit-ring{position:absolute;left:140px;top:560px;width:800px;height:800px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06)}
+.hub{position:absolute;left:350px;top:842px;width:380px;height:238px;border-radius:120px;background:linear-gradient(145deg,#252529,#07070a);box-shadow:0 18px 50px rgba(0,0,0,.38);display:flex;align-items:center;justify-content:center;text-align:center;padding:35px}
+.hub strong{display:block;font-size:29px;line-height:1.05}.hub small{display:block;margin-top:14px;font-size:20px;color:#e4e854;letter-spacing:.08em}
+.card{position:absolute;width:200px;height:210px;margin-left:-100px;margin-top:-105px;border-radius:36px;background:#fff;color:#09090d;box-shadow:0 18px 36px rgba(0,0,0,.26);overflow:hidden}
+.card .accent{position:absolute;left:24px;top:22px;width:42px;height:6px;border-radius:5px;background:#e50914}
+.card img{position:absolute;left:20px;top:30px;width:160px;height:126px;object-fit:contain;mix-blend-mode:multiply}
+.card .label{position:absolute;left:8px;right:8px;bottom:20px;text-align:center;font-weight:800;font-size:21px}
+.icon{position:absolute;left:38px;top:50px;width:124px;height:92px}
+.offer{position:absolute;left:350px;top:955px;width:380px;height:52px;text-align:center;font-size:28px;font-weight:800;color:#e4e854;letter-spacing:.02em}
+.offer-note{position:absolute;left:125px;top:1530px;width:830px;text-align:center;font-size:25px;color:rgba(255,255,255,.86)}
+.end{background:linear-gradient(155deg,#07070a 0%,#290410 48%,#e50914 83%,#fb3a15 100%);text-align:center}
+.wordmark{position:absolute;top:520px;left:140px;width:800px;font-size:48px;font-weight:900;letter-spacing:.04em}
+.end h1{position:absolute;top:730px;left:95px;width:890px;margin:0;font-size:76px;line-height:1.02}
+.end .cats{position:absolute;top:970px;left:96px;width:888px;font-size:31px;line-height:1.42;color:#ddd}
+.end .rule{position:absolute;left:440px;top:1178px;width:200px;height:6px;border-radius:4px;background:#e4e854}
+.end .domain{position:absolute;top:1235px;left:60px;width:960px;font-size:48px;font-weight:800}
+.end .micro{position:absolute;top:1395px;left:140px;width:800px;font-size:26px;color:rgba(255,255,255,.78)}
+.wipe{position:absolute;left:50%;top:50%;width:40px;height:40px;border-radius:50%;background:#fff;transform:translate(-50%,-50%) scale(0);z-index:50}
+</style>
+</head>
+<body>
+<div id="stage">
+  <section id="s1" class="scene bg-brand">
+    <div class="browser">
+      <div class="toolbar"><span class="dot red"></span><span class="dot"></span><span class="dot"></span><div class="address">casadofitness.com.br</div></div>
+      <div class="brand-pill">CASA DO FITNESS</div>
+      <div class="headline">Encontre o equipamento ideal para o seu treino.</div>
+      <div class="sub">Busque pelo que você realmente quer treinar em casa.</div>
+      <div class="search-icon"></div><div id="typed" class="search"></div><div id="progress" class="progress"></div>
+      <div id="cta1" class="cta">ENCONTRAR</div>
+      <div id="cursor1" class="cursor"><svg viewBox="0 0 28 42"><path d="M2 2v31l8-8 6 14 6-3-6-13h11z" fill="white" stroke="#111" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    </div>
+  </section>
+
+  <section id="s2" class="scene orbit-scene">
+    <div class="orbit-title">Tudo para montar seu espaço fitness.</div>
+    <div class="orbit-kicker">Escolha a categoria e encontre o equipamento certo.</div>
+    <div class="orbit-ring"></div>
+    <div class="hub"><div><strong>ESCOLHA<br>SEU TREINO</strong><small>CASA DO FITNESS</small></div></div>
+    <div id="cards"></div>
+    <div id="offer" class="offer"></div>
+    <div class="offer-note">*Consulte condições e disponibilidade no site.</div>
+  </section>
+
+  <section id="s3" class="scene end">
+    <div class="wordmark">CASA DO FITNESS</div>
+    <h1>Encontre seu equipamento. Comece seu treino.</h1>
+    <div class="cats">Esteiras • Bicicletas • Elípticos<br>Remo • Musculação • Acessórios</div>
+    <div class="rule"></div>
+    <div id="domain" class="domain"></div>
+    <div class="micro">Tudo para o seu treino, em um só lugar.</div>
+  </section>
+  <div id="wipe" class="wipe"></div>
+</div>
+<script>
+(function(){
+  const cardsData=[
+    {label:'ESTEIRAS',img:'assets/treadmill.jpg',angle:-90},
+    {label:'BICICLETAS',img:'assets/bike.jpg',angle:-30},
+    {label:'ACESSÓRIOS',icon:'dumbbell',angle:30},
+    {label:'MUSCULAÇÃO',img:'assets/station.jpg',angle:90},
+    {label:'REMO',img:'assets/rower.jpg',angle:150},
+    {label:'ELÍPTICOS',icon:'elliptical',angle:210}
+  ];
+  const cards=document.getElementById('cards');
+  function icon(kind){
+    if(kind==='dumbbell') return '<svg class="icon" viewBox="0 0 140 90"><g fill="#111"><rect x="36" y="39" width="68" height="12" rx="6"/><rect x="18" y="25" width="16" height="40" rx="5"/><rect x="6" y="31" width="10" height="28" rx="4"/><rect x="106" y="25" width="16" height="40" rx="5"/><rect x="124" y="31" width="10" height="28" rx="4"/></g></svg>';
+    return '<svg class="icon" viewBox="0 0 140 90"><g fill="none" stroke="#111" stroke-width="7" stroke-linecap="round"><ellipse cx="68" cy="58" rx="27" ry="14"/><path d="M48 55 62 20h22l15 41M63 21l-10-9M84 21l15-10M62 39h29"/></g></svg>';
+  }
+  cardsData.forEach((d,i)=>{
+    const el=document.createElement('div');el.className='card';el.id='card'+i;
+    el.innerHTML='<div class="accent"></div>'+(d.img?'<img src="'+d.img+'">':icon(d.icon))+'<div class="label">'+d.label+'</div>';
+    cards.appendChild(el);
+  });
+  const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+  const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
+  const easeOut=v=>1-Math.pow(1-clamp(v),3);
+  const set=(el,o)=>{for(const k in o) el.style[k]=o[k]};
+  const s1=document.getElementById('s1'),s2=document.getElementById('s2'),s3=document.getElementById('s3');
+  const typed=document.getElementById('typed'),progress=document.getElementById('progress'),cta=document.getElementById('cta1');
+  const cursor=document.getElementById('cursor1'),offer=document.getElementById('offer'),domain=document.getElementById('domain'),wipe=document.getElementById('wipe');
+  const phrase='esteira para casa';
+  const offers=['ATÉ 18X SEM JUROS','5% OFF NO PIX','FRETE GRÁTIS ACIMA DE R$ 10 MIL'];
+  window.seek=(t)=>{
+    const t1=3.7,t2=10.9,total=14.4;
+    set(s1,{opacity:t<t1?1:0});set(s2,{opacity:t>=t1&&t<t2?1:0});set(s3,{opacity:t>=t2?1:0});
+    if(t<t1){
+      const inP=easeOut(t/.65);set(document.querySelector('.browser'),{transform:'translateY('+(48*(1-inP))+'px) scale('+(0.97+0.03*inP)+')'});
+      const chars=Math.floor(clamp((t-.75)/1.55)*phrase.length);typed.textContent=phrase.slice(0,chars);
+      progress.style.transform='scaleX('+clamp((t-.75)/2.15)+')';
+      const move=smooth((t-2.45)/.65);cursor.style.left=(790-210*move)+'px';cursor.style.top=(1110+188*move)+'px';cursor.style.opacity=t<2.15?0:1;
+      const press=clamp((t-3.03)/.12);cta.style.transform='scale('+(1-.055*Math.sin(press*Math.PI))+')';
+    }
+    if(t>=t1&&t<t2){
+      const lt=t-t1;
+      cardsData.forEach((d,i)=>{
+        const el=document.getElementById('card'+i);const delay=.15+i*.33;const entry=easeOut((lt-delay)/.55);
+        const turn=60*smooth(lt/3.6);const a=(d.angle+turn)*Math.PI/180;const r=365+10*entry;
+        const x=540+r*Math.cos(a),y=960+r*Math.sin(a);
+        const pulseStart=delay+.45;const pulse=1+0.06*Math.sin(Math.PI*clamp((lt-pulseStart)/.6));
+        set(el,{left:x+'px',top:y+'px',opacity:entry,transform:'scale('+(0.88+0.12*entry)*pulse+')'});
+      });
+      let text='';
+      const offerStart=3.85;
+      if(lt>=offerStart){
+        const idx=Math.min(offers.length-1,Math.floor((lt-offerStart)/1.05));
+        text=offers[idx];
+        const local=(lt-offerStart)%1.05;
+        offer.style.opacity=Math.min(1,local/.18,(1.05-local)/.16);
+      } else offer.style.opacity=0;
+      offer.textContent=text;
+    }
+    if(t>=t2){
+      const lt=t-t2;const p=easeOut(lt/.7);
+      document.querySelector('.wordmark').style.transform='translateY('+(50*(1-p))+'px)';
+      document.querySelector('.end h1').style.transform='translateY('+(40*(1-easeOut((lt-.2)/.7)))+'px)';
+      document.querySelector('.end .cats').style.opacity=clamp((lt-.55)/.45);
+      const d='www.casadofitness.com.br';domain.textContent=d.slice(0,Math.floor(clamp((lt-1.35)/1.25)*d.length));
+    }
+    const phase1=clamp((t-3.48)/.22);const phase2=clamp((t-10.67)/.22);
+    if(phase1>0&&phase1<1){wipe.style.background='#fff';wipe.style.transform='translate(-50%,-50%) scale('+(phase1*70)+')';}
+    else if(phase2>0&&phase2<1){wipe.style.background='#09090d';wipe.style.transform='translate(-50%,-50%) scale('+(phase2*70)+')';}
+    else wipe.style.transform='translate(-50%,-50%) scale(0)';
+  };
+  window.seek(0);
+})();
+</script>
+</body>
+</html>
