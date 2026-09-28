@@ -90,7 +90,7 @@ jobs:
         run: |
           set -euo pipefail
           ffmpeg -y -ss 0.3 -i .cloud-render/preview.mp4 -frames:v 1 -q:v 2 .cloud-render/poster.jpg
-          ffmpeg -y -i .cloud-render/preview.mp4 -vf "fps=8/15,scale='min(360,iw)':-2,tile=4x2:padding=8:margin=8" -frames:v 1 -q:v 2 .cloud-render/filmstrip.jpg
+          ffmpeg -y -i .cloud-render/preview.mp4 -vf "fps=12/18,scale='min(270,iw)':-2,tile=6x2:padding=8:margin=8" -frames:v 1 -q:v 2 .cloud-render/filmstrip.jpg
           ffprobe -v error -show_entries format=duration,size -show_entries stream=width,height,r_frame_rate,codec_name -of json .cloud-render/preview.mp4 > .cloud-render/metadata.json
           {
             echo "# Tesseract Lab — cloud render"
