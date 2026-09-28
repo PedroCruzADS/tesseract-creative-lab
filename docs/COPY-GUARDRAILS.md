@@ -2,6 +2,36 @@
 
 Copy do Lab deve carregar informação. Frase bonita sem função é débito criativo.
 
+## Prioridades
+
+- clareza antes de criatividade;
+- uma ideia principal por tela;
+- benefício apenas se comprovado;
+- condição comercial sem ambiguidade;
+- CTA coerente com a landing page;
+- copy criativa separada de fatos comerciais.
+
+## Fonte da verdade
+
+Copy factual pode vir de:
+- brief;
+- snapshot comercial versionado;
+- conteúdo comprovado do produto;
+- instrução explícita do usuário.
+
+Se a fonte não suporta a afirmação, omita ou reescreva sem o claim.
+
+## Proibido inventar
+
+- superlativos não comprovados;
+- urgência falsa;
+- estoque escasso sem fonte;
+- prazo falso;
+- desconto calculado a partir de dados incompletos;
+- especificação técnica ausente;
+- comparações sem base;
+- prova social não fornecida.
+
 ## Teste de informação
 
 Cada frase precisa cumprir pelo menos uma função:
@@ -65,6 +95,13 @@ Texto secundário:
 - ou orienta.
 
 Não repita a headline com outras palavras.
+
+## Textos longos
+
+Se uma condição não cabe com boa leitura:
+1. simplifique a comunicação sem mudar o sentido;
+2. use asterisco/nota somente quando houver texto legal conhecido;
+3. nunca reduza fonte a ponto de tornar a peça ilegível.
 
 ## CTA
 
