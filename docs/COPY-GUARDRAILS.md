@@ -1,32 +1,89 @@
-# Copy guardrails
+# Copy guardrails — paid media
 
-## Prioridades
-- clareza antes de criatividade;
-- uma ideia principal por tela;
-- benefício apenas se comprovado;
-- condição comercial sem ambiguidade;
-- CTA coerente com a landing page.
+Copy do Lab deve carregar informação. Frase bonita sem função é débito criativo.
 
-## Proibido inventar
-- superlativos não comprovados;
-- urgência falsa;
-- estoque escasso sem fonte;
-- prazo falso;
-- desconto calculado a partir de dados incompletos;
-- especificação técnica ausente;
-- comparações sem base.
+## Teste de informação
 
-## Textos longos
-Se uma condição não cabe com boa leitura:
-1. simplificar a comunicação;
-2. usar asterisco/nota somente quando houver texto legal conhecido;
-3. nunca reduzir fonte a ponto de tornar a peça ilegível.
+Cada frase precisa cumprir pelo menos uma função:
+- identificar produto/categoria;
+- explicitar necessidade;
+- comunicar benefício verificável;
+- informar condição comercial;
+- reduzir objeção;
+- orientar a próxima ação;
+- conectar visualmente duas cenas.
 
-## Fonte
-Copy pode vir de:
-- brief;
-- snapshot;
-- conteúdo do produto;
-- instrução explícita do usuário.
+Se a frase puder ser removida sem perda de significado, remova.
 
-O agente deve separar copy criativa de fatos comerciais.
+## Teste de substituição de marca
+
+Remova o logo mentalmente.
+
+Se a frase funcionar igualmente para dez marcas não relacionadas, trate-a como suspeita.
+
+Exemplos de padrão a evitar como fallback:
+- “Sua jornada começa aqui”
+- “Transforme sua rotina”
+- “Eleve seu treino”
+- “Vá além”
+- “Movimento que inspira”
+- “Feito para você”
+- “Sua saúde, nosso impulso”
+
+Uma frase institucional existente da marca pode ser usada quando o brief pedir branding. Ela não deve ocupar automaticamente o lugar de uma mensagem de performance.
+
+## Busca e UI simulada
+
+Texto digitado deve parecer comportamento humano, não keyword stuffing.
+
+Prefira:
+- “esteira para casa”
+- “bicicleta para apartamento”
+- “equipamento para treino de pernas”
+
+Evite:
+- “equipamentos fitness profissionais residenciais para casa”
+
+## Hierarquia
+
+Por padrão:
+1. produto/necessidade;
+2. benefício ou seleção;
+3. condição comercial;
+4. CTA.
+
+O brief pode inverter a ordem.
+
+## Densidade
+
+Uma cena deve ter uma mensagem principal.
+
+Texto secundário:
+- explica;
+- prova;
+- qualifica;
+- ou orienta.
+
+Não repita a headline com outras palavras.
+
+## CTA
+
+CTA descreve o próximo passo:
+- “Ver modelos”
+- “Escolha seu equipamento”
+- “Encontre o seu”
+- “Veja no site”
+
+Evite CTA abstrato quando existe uma ação concreta.
+
+## Critic scorecard
+
+O Creative Critic deve marcar:
+- generic_copy;
+- redundant_copy;
+- unverifiable_claim;
+- weak_cta;
+- keyword_stuffing;
+- missing_information_gain.
+
+Uma flag precisa citar a frase e sugerir reescrita mais concreta, sem inventar fatos.
