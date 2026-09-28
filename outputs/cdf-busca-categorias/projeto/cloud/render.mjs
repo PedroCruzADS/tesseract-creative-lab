@@ -81,7 +81,7 @@ const video=resolve(out,'preview.mp4');
 const args=[
   '-y','-v','error','-framerate',String(fps),'-i',resolve(frames,'frame-%05d.jpg'),
   '-i',audio,'-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset',isFinal?'medium':'veryfast',
-  '-crf',isFinal?'16':'20','-pix_fmt','yuv420p','-c:a','aac','-b:a','192k',
+  '-crf',isFinal?'16':'20','-pix_fmt','yuv420p','-c:a','aac','-b:a','192k','-ar','48000','-ac','2',
   '-af','loudnorm=I=-14:TP=-1.5:LRA=7','-t',String(duration),'-movflags','+faststart',video
 ];
 const ff=spawnSync('ffmpeg',args,{stdio:'inherit'});
