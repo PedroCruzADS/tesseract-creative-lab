@@ -10,10 +10,12 @@ const out=resolve(root,'.cloud-render');
 const frames=resolve(here,'.frames');
 const quality=process.env.QUALITY || 'preview';
 const isFinal=quality==='final';
-const fps=isFinal?60:30;
-const width=isFinal?1080:540;
-const height=isFinal?1920:960;
-const scale=width/1080;
+// Visual QA must happen at delivery geometry/frame rate. Preview may render
+// faster elsewhere, but it must not hide raster, timing or color defects.
+const fps=60;
+const width=1080;
+const height=1920;
+const scale=1;
 const duration=18.0;
 const totalFrames=Math.round(duration*fps);
 
@@ -72,17 +74,19 @@ await page.evaluate(async(s)=>{
 for(let i=0;i<totalFrames;i++){
   const t=i/fps;
   await page.evaluate(v=>window.seek(v),t);
-  const name='frame-'+String(i).padStart(5,'0')+'.jpg';
-  await page.screenshot({path:resolve(frames,name),type:'jpeg',quality:isFinal?94:88});
+  const name='frame-'+String(i).padStart(5,'0')+'.png';
+  await page.screenshot({path:resolve(frames,name),type:'png'});
   if(i%60===0) console.log('[render] frame '+i+'/'+totalFrames);
 }
 await browser.close();
 
 const video=resolve(out,'preview.mp4');
 const args=[
-  '-y','-v','error','-framerate',String(fps),'-i',resolve(frames,'frame-%05d.jpg'),
+  '-y','-v','error','-framerate',String(fps),'-i',resolve(frames,'frame-%05d.png'),
   '-i',audio,'-map','0:v:0','-map','1:a:0','-c:v','libx264','-preset',isFinal?'medium':'veryfast',
-  '-crf',isFinal?'16':'20','-pix_fmt','yuv420p','-c:a','aac','-b:a','192k','-ar','48000','-ac','2',
+  '-crf',isFinal?'14':'16','-tune','animation','-pix_fmt','yuv420p',
+  '-colorspace','bt709','-color_primaries','bt709','-color_trc','bt709','-color_range','tv',
+  '-c:a','aac','-b:a','192k','-ar','48000','-ac','2',
   '-af','loudnorm=I=-14:TP=-1.5:LRA=7','-t',String(duration),'-movflags','+faststart',video
 ];
 const ff=spawnSync('ffmpeg',args,{stdio:'inherit'});
