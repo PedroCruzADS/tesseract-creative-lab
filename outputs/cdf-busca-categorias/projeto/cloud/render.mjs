@@ -14,7 +14,7 @@ const fps=isFinal?60:30;
 const width=isFinal?1080:540;
 const height=isFinal?1920:960;
 const scale=width/1080;
-const duration=14.4;
+const duration=18.0;
 const totalFrames=Math.round(duration*fps);
 
 rmSync(frames,{recursive:true,force:true});
