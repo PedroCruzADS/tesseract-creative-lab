@@ -17,13 +17,18 @@ outputs/<slug>/
   <slug>_stories-9x16_vNN.mp4
   <slug>_stories-9x16_vNN.gif
   projeto/<formato>.tsrct        projetos editáveis
+  Storyboards/                  variantes e storyboard da versão
+  Stills/                       stills aprovados antes do motion
+  Renders/                      renders e intermediários retidos
+  Source/                       código/fonte específico do job
+  request.json                  parâmetros e fontes versionados
   previews/filmstrip_<formato>.png
   brief.md                       brief vigente
   offer.json                     snapshot comercial usado
   notes.md                       mudanças, decisões, conflitos da versão
   build_snapshot.py              cópia do gerador que produziu a versão
   versao.txt                     vNN atual
-  versoes/vNN/                   versões anteriores, mesma estrutura
+  versoes/vNN/                   versões anteriores, mesma estrutura, incluindo snapshot da oferta
   .tesseract-work/<formato>/     intermediários (fora do git)
 ```
 
@@ -40,7 +45,7 @@ A raiz contém **somente** a versão atual. Nunca criar pasta nova por formato o
 ## Versões
 
 - Ajuste fino pedido sobre a versão atual → regravar a mesma `vNN` no lugar.
-- Mudança de conceito, nova oferta ou pedido explícito de nova versão → arquivar a atual em `versoes/vNN` e criar `vNN+1` (`--nova-versao` nos geradores; `scripts/lab_versions.py` faz o arquivamento).
+- Mudança de conceito, nova oferta ou pedido explícito de nova versão → arquivar a atual em `versoes/vNN` e criar `vNN+1` (`--nova-versao` nos builders; `python scripts/lab_versions.py --slug <slug> --new-version` prepara um job genérico).
 - Versões arquivadas não são editadas nem sobrescritas.
 
 ## Variações (testes A/B)

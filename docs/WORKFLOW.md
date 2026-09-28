@@ -1,41 +1,146 @@
 # Workflow de produção
 
-## 1. Fonte da verdade
-Toda peça deve nascer de fontes verificáveis: assets locais, URL do produto, dados comerciais fornecidos pelo usuário ou snapshot salvo em `data/`.
+Este workflow transforma o princípio "contexto antes do render" em gates explícitos.
 
-Nunca inferir preço, desconto, parcelamento, frete, estoque, cupom ou benefício.
+## Gate 0 — fonte da verdade
 
-## 2. Ingestão
-1. Criar uma pasta de trabalho com `scripts/new-creative.ps1`.
-2. Salvar assets em `assets/<slug>/`.
-3. Se houver URL, gerar snapshot com `scripts/product_snapshot.py`.
-4. Preencher o brief usando `briefs/TEMPLATE.md`.
+Toda peça nasce de:
+- instrução explícita da campanha;
+- assets locais autorizados;
+- URL/snapshot comercial;
+- brand kit fornecido;
+- referências visuais declaradas.
 
-## 3. Produção
-- aplicar a grade e o gate visual de `docs/COMPOSITION-QA.md` para cada formato;
-- abrir no Claude Code/Codex;
-- ler `AGENTS.md`;
-- instalar/verificar Tesseract;
-- criar `.tsrct`;
-- importar assets reais;
-- montar a peça;
-- gerar preview + filmstrip;
-- revisar;
-- exportar MP4.
+Nunca inferir preço, desconto, parcelamento, frete, estoque, cupom, benefício técnico ou urgência.
 
-## 4. Variações
-Depois de aprovar a master:
-- variar hook;
-- variar headline;
-- variar CTA;
-- adaptar 9:16, 4:5 e 1:1;
-- preservar produto e condições.
+## Gate 1 — contexto e ingestão
 
-## 5. Entrega
-Uma pasta por peça em `outputs/<slug>/`, com todos os formatos juntos (ver `docs/NAMING.md`):
-- MP4 (e GIF, se pedido) de cada formato na raiz: `<slug>_<formato>_vNN.mp4`;
-- projetos `.tsrct` em `projeto/`;
-- filmstrips em `previews/`;
-- brief, snapshot comercial (`offer.json`) e notas da versão.
+1. Crie um job com `scripts/new-creative.ps1`.
+2. Salve assets em `assets/<slug>/`.
+3. Coloque referências em `assets/<slug>/references/`.
+4. Gere snapshot da oferta, quando houver URL, em `data/<slug>/offer.json`.
+5. Copie o snapshot imutável para `outputs/<slug>/offer.json` e aponte `request.json` para essa cópia versionada.
+6. Preencha `brief.md` e `request.json`.
+7. Rode `scripts/validate-job.py` e `scripts/preflight-renderer.ps1`.
 
-Ajustes finos regravam a versão atual. Nova versão arquiva a atual em `versoes/vNN/`.
+O agente deve conseguir responder, antes de criar:
+- o que está vendendo?
+- qual é a condição comprovada?
+- qual é o objetivo da mídia?
+- qual é a hierarquia visual?
+- quais assets podem ser usados?
+- quais atributos das referências são desejados?
+- quais restrições não podem ser violadas?
+
+## Gate 2 — deconstrução de referências
+
+Use `prompts/reference-deconstruction.txt`.
+
+Para cada referência, extraia somente atributos reutilizáveis:
+- duração e densidade;
+- hook;
+- ritmo de cortes;
+- hierarquia tipográfica;
+- proporção produto/texto;
+- movimentos de câmera;
+- tipos de transição;
+- fundo e tratamento de luz;
+- uso de UI;
+- clímax/payoff;
+- sensação geral.
+
+Não peça "copie este vídeo". Transforme a referência em direção.
+
+## Gate 3 — três storyboards
+
+Use `prompts/storyboard-3x.txt`.
+
+As 3 variantes devem divergir de verdade. Exemplo:
+- A: produto hero + oferta rápida;
+- B: problema/benefício + demonstração;
+- C: editorial/cinemático + payoff comercial.
+
+Cada cena deve registrar:
+- objetivo;
+- duração;
+- assets;
+- copy;
+- composição;
+- movimento pretendido;
+- transição;
+- fonte de verdade usada;
+- risco/observação.
+
+Não anime ainda.
+
+## Gate 4 — stills antes de motion
+
+Depois da escolha:
+1. gere um still representativo por cena;
+2. verifique produto, logo, preço, tipografia, margens e safe areas;
+3. corrija composição;
+4. só então anime.
+
+Stills são baratos de corrigir; motion ruim é caro de retrabalhar.
+
+## Gate 5 — roteamento e produção
+
+Leia `docs/RENDERER-ROUTING.md`.
+
+Registre em `notes.md`:
+- renderer;
+- motivo;
+- versão/skill relevante;
+- limitações conhecidas.
+
+Construa a master no formato principal.
+
+## Gate 6 — direção e iteração
+
+Assista a master e anote mudanças em linguagem operacional:
+- "reduza o push-in da cena 2 para 70%";
+- "hard cut entre 2 e 3";
+- "segure o preço 8 frames antes do CTA";
+- "desacelere o zoom final";
+- "mova o produto 6% à direita";
+- "troque fade por wipe horizontal".
+
+Veja `docs/DIRECTOR-NOTES.md`.
+
+## Gate 7 — QA
+
+Faça:
+- QA comercial;
+- QA de produto;
+- QA visual;
+- QA de legibilidade mobile;
+- QA de pacing;
+- QA técnico do renderer.
+- Aplique a grade e os critérios de `docs/COMPOSITION-QA.md` para cada formato.
+- Confira margens, safe areas e posicionamento nos frames de maior escala/movimento.
+- Para 9:16 de Meta, use a margem interna conservadora de 250 px no topo e rodapé quando aplicável; confirme a prévia real do placement.
+
+Para HyperFrames, use lint/check/snapshot quando aplicável.
+Para Tesseract, gere preview/filmstrip.
+Para Remotion, gere stills/Studio preview e valide a composição.
+
+## Gate 8 — export e variações
+
+Só depois da master aprovada:
+- adapte 9:16, 4:5 e 1:1;
+- varie hook, headline ou CTA uma hipótese por vez;
+- preserve oferta e produto;
+- registre as diferenças.
+
+## Entrega
+
+Cada peça deve usar uma única pasta `outputs/<slug>/` para todos os formatos, conforme `docs/NAMING.md`. A raiz contém apenas a versão atual; versões anteriores ficam em `versoes/vNN/`.
+
+Reter, quando aplicável:
+- MP4 (e GIF, se solicitado), com nomes `<slug>_<formato>_vNN`;
+- projeto editável (`projeto/<formato>.tsrct` ou código do renderer);
+- `Storyboards/storyboard.json` e `Stills/`;
+- previews/filmstrips em `previews/`;
+- `brief.md`, `request.json`, snapshot comercial `offer.json`, `notes.md` e `versao.txt`.
+
+Ajuste fino autorizado regrava a versão atual. Conceito novo ou pedido de nova versão arquiva a atual em `versoes/vNN/` com `scripts/lab_versions.py`; não sobrescreva versões arquivadas.
