@@ -25,7 +25,7 @@ download() {
 download "https://casadofitness.vtexassets.com/arquivos/ids/156677/01.jpg.jpg?v=639235439616630000" "$ASSETS/treadmill.jpg"
 download "https://casadofitness.vtexassets.com/arquivos/ids/163567/bicicleta-spinning-mormaii-motion-s-conexao-bluetooth_0.jpg.jpg?v=639219659714430000" "$ASSETS/bike.jpg"
 download "https://casadofitness.vtexassets.com/arquivos/ids/155823/estacao-de-musculacao-speedo-multi-3-com-leg-press_0.jpg.jpg?v=639250034319330000" "$ASSETS/station.jpg"
-download "https://casadofitness.vtexassets.com/arquivos/ids/158619/remomormaii1000.jpg.jpg?v=639131598806230000" "$ASSETS/rower.jpg"
+download "https://casadofitness.vtexassets.com/arquivos/ids/158619/remomormaii1000.jpg.jpg?v=639131598806230000" "$ASSETS/rower.jpg"\ndownload "https://casadofitness.vtexassets.com/arquivos/ids/157382/halter-dumbbell-regulavel-bowflex-selecttech-552-2-a-24-kg-par_0.jpg.jpg?v=639081585025670000" "$ASSETS/dumbbell.jpg"
 
 npm install --no-audit --no-fund
 npx playwright install --with-deps chromium
