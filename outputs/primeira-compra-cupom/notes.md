@@ -94,3 +94,10 @@
 - QA: `hyperframes check` sem erros; filmstrip do MP4 final inspecionado (previews/filmstrip_v04.png); `qa-v04.json`.
 - v03 arquivado em versoes/v03 (MP4 + QA). O versionador do lab (`scripts/lab_versions.py`) quebrou ao copiar `projeto/filme/.thumbnails` do Studio (caminhos longos no Windows) e o código-fonte do v03 não foi arquivado; está no histórico do HyperFrames (`npx hyperframes history`) e em Source/. Vale excluir `.thumbnails` da cópia no script.
 - Antes de veicular: confirmar "Mais de 20 anos de história" e a elegibilidade/cumulatividade do cupom no carrinho. Nenhuma plataforma alterada.
+
+## v05 (05/10/2026) — refinamentos aplicados
+- Alinhamento: topo único em y 340 (logo/título) nas quatro cenas; dois tamanhos de logo (360 e 650); "5% OFF" alinhado à margem do ticket; chips das cartas em 31 px sem estourar.
+- Redundância: tirei a subfrase "Para montar a sua academia" e o logo da última carta (bloco centrado na vertical, quatro categorias maiores); carrinho sem "1 unidade" e sem o brilho amarelo no campo (sucesso = check no botão + faixa + linha de desconto).
+- Ritmo: abertura +0,5 s e cada carta +0,3 s; filme de 19,8 s. Áudio refeito nos novos tempos (`projeto/make_audio_v05.py`), -15,0 LUFS, pico -1,8 dBFS.
+- Decisão deixada de fora: "-5%" na barra de desconto do carrinho (repetiria o número). Opcional se o Pedro quiser reforçar o ganho.
+- v04 arquivado em versoes/v04 (MP4, QA, index.html, áudio e script). O modern.css/js do v04 não foram arquivados (já tinham sido editados quando copiei) e podem ser recuperados pelo histórico do HyperFrames.

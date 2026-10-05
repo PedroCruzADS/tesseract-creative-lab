@@ -1,0 +1,37 @@
+{
+ "version": "v05",
+ "file": "primeira-compra-cupom_stories-9x16_v05.mp4",
+ "duration_seconds": 19.8,
+ "width": 1080,
+ "height": 1920,
+ "fps": 60,
+ "video_codec": "h264",
+ "pixel_format": "yuv420p",
+ "audio_codec": "aac",
+ "channels": 2,
+ "sample_rate": 48000,
+ "lufs": -15.0,
+ "sample_peak_dbfs": -1.8,
+ "bytes": 12713852,
+ "sha256": "fe0f596f40ce2c60251b042ea144a91b01af4a2ceee7d65cdc058f9b084d3be4",
+ "hyperframes_check": {
+  "ok": true,
+  "errors": 0,
+  "warnings": 1,
+  "warning": "imagem TR3 repetida (carrossel e carrinho)"
+ },
+ "audio": "original: base 104 BPM sintetizada + Foley de interface no codigo (projeto/make_audio_v05.py), sem voz nem amostras de terceiros",
+ "visual_contact_sheet_inspected": "previews/filmstrip_v05.png",
+ "previous_version_archived": "versoes/v04/",
+ "changes_from_v04": [
+  "linha de topo unica (y 340) nas quatro cenas",
+  "dois tamanhos de logo; logo removido da ultima carta",
+  "subfrase 'Para montar a sua academia' removida",
+  "carrinho sem '1 unidade' e sem brilho amarelo no campo",
+  "chips 31 px",
+  "ritmo: abertura +0,5 s e +0,3 s por carta (19,8 s)",
+  "alinhamento optico do 5% OFF no ticket"
+ ],
+ "commercial_status": "rascunho: confirmar a frase 'Mais de 20 anos de historia' e a elegibilidade/cumulatividade do cupom PRIMEIRACOMPRA no carrinho antes de veicular",
+ "platform_changes": false
+}
