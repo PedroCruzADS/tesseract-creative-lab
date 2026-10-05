@@ -1,0 +1,57 @@
+﻿{
+    "product_slug":  "primeira-compra-cupom",
+    "objective":  "conversion",
+    "channel":  "meta_ads",
+    "placements":  [
+                       "reels",
+                       "stories"
+                   ],
+    "canvas":  "1080x1920",
+    "duration_seconds":  18,
+    "fps":  30,
+    "renderer":  "hyperframes",
+    "offer_snapshot":  "outputs/primeira-compra-cupom/offer.json",
+    "assets_dir":  "assets/primeira-compra-cupom",
+    "brand":  {
+                  "logo":  "assets/casa-do-fitness-brand/logo/logo-header-white.png",
+                  "fonts":  [
+
+                              "Bai Jamjuree"
+                            ],
+                  "colors":  [
+
+                              "#1C0306", "#E50914", "#FA3312", "#E4E854", "#26272A"
+                             ],
+                  "rules":  [
+
+                              "Safe area: 250 px no topo e no rodape", "Preservar logo e produtos oficiais"
+                            ]
+              },
+    "references":  [
+
+                       "Brief detalhado do usuario em 2026-10-05"
+                   ],
+    "copy":  {
+                 "hook":  "Ainda não comprou com a gente?",
+                 "headline":  "5% OFF",
+                 "support":  "na sua primeira compra.",
+                 "cta":  "Comprar agora"
+             },
+    "storyboard":  {
+                       "variants":  3,
+                       "require_stills_before_motion":  true
+                   },
+    "variants":  {
+                     "hooks":  1,
+                     "ctas":  1,
+                     "formats":  [
+                                     "1080x1920"
+                                 ]
+                 },
+    "publication_status": "draft_pending_commercial_confirmation_20_years",
+    "version": "v03",
+    "constraints":  {
+                        "no_product_recreation":  true,
+                        "no_unverified_claims":  true
+                    }
+}

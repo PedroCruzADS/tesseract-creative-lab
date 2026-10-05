@@ -1,0 +1,79 @@
+{
+  "product_slug": "cdf-busca-categorias",
+  "objective": "brand_and_category_discovery",
+  "channel": "meta_ads",
+  "placements": [
+    "reels",
+    "stories"
+  ],
+  "canvas": "1080x1920",
+  "duration_seconds": 18,
+  "fps": 60,
+  "renderer": "tesseract",
+  "offer_snapshot": "outputs/cdf-busca-categorias/versoes/v11/offer.json",
+  "assets_dir": "assets/cdf-busca-categorias",
+  "brand": {
+    "logo": "assets/casa-do-fitness-brand/logo/logo-header-white.png",
+    "fonts": [
+      "Bai Jamjuree"
+    ],
+    "colors": [
+      "#000000",
+      "#E50914",
+      "#FA3312",
+      "#E4E854",
+      "#FFFFFF"
+    ],
+    "rules": [
+      "official product images",
+      "250px internal header/footer safe area",
+      "official slogan"
+    ]
+  },
+  "references": [
+    {
+      "source": "https://developer.apple.com/design/human-interface-guidelines/motion",
+      "use_for": [
+        "motion hierarchy"
+      ],
+      "do_not_copy": [
+        "brand",
+        "copy",
+        "assets"
+      ]
+    },
+    {
+      "source": "https://design.google/library/making-motion-meaningful",
+      "use_for": [
+        "continuous arcs",
+        "easing"
+      ],
+      "do_not_copy": [
+        "brand",
+        "copy",
+        "assets"
+      ]
+    }
+  ],
+  "copy": {
+    "hook": "Seu próximo treino começa aqui.",
+    "headline": "Monte a academia da sua casa.",
+    "support": "Esteiras, bicicletas, musculação, acessórios...",
+    "cta": "ENCONTRAR"
+  },
+  "storyboard": {
+    "variants": 3,
+    "require_stills_before_motion": true
+  },
+  "variants": {
+    "hooks": 1,
+    "ctas": 1,
+    "formats": [
+      "1080x1920"
+    ]
+  },
+  "constraints": {
+    "no_product_recreation": true,
+    "no_unverified_claims": true
+  }
+}

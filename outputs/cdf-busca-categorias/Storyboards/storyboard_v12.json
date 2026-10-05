@@ -1,0 +1,44 @@
+{
+  "version": "v12",
+  "date": "2026-09-29",
+  "change_scope": "Only the central hub in the six-category/orbit scene. Opening, product cards, orbit geometry, offer order, timing, end card and audio remain from v11.",
+  "directions": [
+    {
+      "id": "A",
+      "name": "Painel de marca em camadas",
+      "hypothesis": "An editorial, angled graphite surface with a precise rim and controlled light makes the hub feel intentional without drawing attention from product cards.",
+      "brand": "Official CDF logo on an untouched top tier.",
+      "offer": "Number or benefit keyword in large yellow type, explanatory line below; four tiny progress segments mark the current offer.",
+      "motion": "Short vertical type entrance and a restrained highlight sweep only when an offer changes.",
+      "risk": "Too much chrome around the logo."
+    },
+    {
+      "id": "B",
+      "name": "Tipografia suspensa",
+      "hypothesis": "Remove the dark capsule and let a large typographic offer float over the background, with the logo as a small header.",
+      "brand": "Official logo centered above the text.",
+      "offer": "Large type with no enclosing card.",
+      "motion": "Text tracks along a short vertical axis.",
+      "risk": "The moving product cards and red background may reduce contrast and legibility."
+    },
+    {
+      "id": "C",
+      "name": "Dial comercial",
+      "hypothesis": "A circular instrument face integrates literally with the orbit and makes the center feel like a physical dial.",
+      "brand": "Official logo in the dial's upper half.",
+      "offer": "One centered line per offer, a rotating marker points to the active segment.",
+      "motion": "Indicator rotates at each condition change.",
+      "risk": "The dial may duplicate the orbit and divert attention away from the conditions."
+    }
+  ],
+  "selected": "A",
+  "selection_reason": "The user approved the orbit but found the center too basic. A layered editorial panel improves hierarchy and finish in that exact area while leaving the established narrative intact. The progress marker supports, rather than competes with, the offer sequence.",
+  "scenes": [
+    {"id": "opening_click", "time_s": [0, 1], "status": "unchanged v11"},
+    {"id": "search", "time_s": [1, 5.5], "status": "unchanged v11"},
+    {"id": "categories", "time_s": [5.5, 9.5], "focus": "six categories, branded central panel", "status": "orbit unchanged; hub surface upgraded"},
+    {"id": "offers", "time_s": [9.5, 14.6], "focus": "single central commercial condition", "status": "hierarchical two-line offer and quiet progress marker"},
+    {"id": "brand_end", "time_s": [14.6, 18], "status": "unchanged v11"}
+  ],
+  "constraints": ["official logo unaltered", "offers unchanged", "no additional commercial claims", "250px top/bottom safe zone", "1080x1920", "60 fps", "v11 archived"]
+}

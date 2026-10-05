@@ -1,0 +1,8 @@
+{
+  "sampled_orbit_states": 31,
+  "min_hub_gap_px": 15.5,
+  "min_card_gap_px": 99.5,
+  "min_safe_canvas_margin_px": 65.6,
+  "source_native_anchor": true,
+  "source_nonwhite_pixels_clear_labels": true
+}

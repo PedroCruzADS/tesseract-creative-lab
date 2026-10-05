@@ -1,0 +1,45 @@
+{
+  "product_slug": "cdf-mix-produtos",
+  "objective": "conversion",
+  "channel": "meta_ads",
+  "placements": [
+    "reels",
+    "stories"
+  ],
+  "canvas": "1080x1920",
+  "duration_seconds": 9,
+  "fps": 30,
+  "renderer": "auto",
+  "offer_snapshot": "outputs/cdf-mix-produtos/offer.json",
+  "assets_dir": "assets/cdf-mix-produtos",
+  "brand": {
+    "logo": "",
+    "fonts": [],
+    "colors": [],
+    "rules": []
+  },
+  "references": [],
+  "copy": {
+    "hook": "",
+    "headline": "",
+    "support": "",
+    "cta": "Confira"
+  },
+  "storyboard": {
+    "variants": 3,
+    "require_stills_before_motion": true
+  },
+  "variants": {
+    "hooks": 2,
+    "ctas": 2,
+    "formats": [
+      "1080x1920",
+      "1080x1350",
+      "1080x1080"
+    ]
+  },
+  "constraints": {
+    "no_product_recreation": true,
+    "no_unverified_claims": true
+  }
+}

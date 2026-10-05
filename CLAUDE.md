@@ -13,6 +13,7 @@ Para qualquer tarefa de vídeo:
 ## Skills
 
 Quando disponíveis:
+- FFmpeg: leia `.claude/skills/ffmpeg-skill/SKILL.md`; use `python scripts/ffmpeg_skill.py <ferramenta> <argumentos>` para acabamento e QA. Integracao em `docs/FFMPEG-SKILL.md`.
 - Tesseract: use as skills oficiais instaladas.
 - HyperFrames: rode `npx hyperframes skills update` e use `/hyperframes`.
 - Remotion: use as skills oficiais; `/remotion-best-practices` cobre o conjunto.

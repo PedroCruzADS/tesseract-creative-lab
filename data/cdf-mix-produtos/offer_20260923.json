@@ -1,0 +1,57 @@
+{
+ "capturado_em": "2026-09-23T10:25:00-03:00",
+ "fontes": [
+  "https://www.casadofitness.com.br/api/catalog_system/pub/products/search?fq=skuId:<id> (via navegador)",
+  "Merchant Center 735600868 (bate com o site)",
+  "Banner home casadofitness.com.br (Mes do Cliente)"
+ ],
+ "condicoes_gerais": {
+  "frete_gratis": "pedidos acima de R$ 10.000 (banner do site + politica configurada no MC em 2026-09-22)",
+  "parcelamento": "ate 18x sem juros (InterestRate=0 em 18x no checkout)",
+  "pix": "5% OFF no PIX (valor PIX = 95% do preco)",
+  "conflito": "banner cita 'PIX ou boleto', mas no checkout o boleto sai sem desconto -> peca usa apenas PIX",
+  "campanha": "Mes do Cliente (banner home)"
+ },
+ "produtos": [
+  {
+   "sku": "19",
+   "nome": "Esteira Ergometrica Speedo TR7 - Alto desempenho",
+   "de": null,
+   "por": 19280.0,
+   "parc18": 1071.11,
+   "pix": 18316.0,
+   "estoque": true,
+   "url": "https://www.casadofitness.com.br/esteira-ergometrica-speedo-tr7/p?idsku=19"
+  },
+  {
+   "sku": "27",
+   "nome": "Bicicleta Spinning Mormaii Motion-S - Conexao Bluetooth",
+   "de": 5190.0,
+   "por": 4490.0,
+   "parc18": 249.44,
+   "pix": 4265.5,
+   "estoque": true,
+   "url": "https://www.casadofitness.com.br/bicicleta-spinning-mormaii-motion-s-conexao-bluetooth/p?idsku=27"
+  },
+  {
+   "sku": "33",
+   "nome": "Eliptico Eletromagnetico Starke SH30 - Painel e Bluetooth",
+   "de": 7490.0,
+   "por": 6299.9,
+   "parc18": 349.99,
+   "pix": 5984.9,
+   "estoque": true,
+   "url": "https://www.casadofitness.com.br/eliptico-eletromagnetico-starke-sh30-painel-e-bluetooth/p?idsku=33"
+  },
+  {
+   "sku": "67",
+   "nome": "Estacao de Musculacao Speedo Multi 3 - Com Leg Press",
+   "de": 18490.0,
+   "por": 15990.0,
+   "parc18": 888.33,
+   "pix": 15190.5,
+   "estoque": true,
+   "url": "https://www.casadofitness.com.br/estacao-de-musculacao-speedo-multi-3-com-leg-press/p?idsku=67"
+  }
+ ]
+}

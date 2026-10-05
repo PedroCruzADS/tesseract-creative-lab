@@ -22,6 +22,8 @@ O renderer é escolhido por job:
 
 Veja `docs/RENDERER-ROUTING.md`.
 
+O acabamento e a verificacao de midia tambem contam com a [ffmpeg-skill](docs/FFMPEG-SKILL.md), instalada no projeto para Codex e Claude. Para inspecionar um video: `python scripts/ffmpeg_skill.py probe "arquivo.mp4" --compact`.
+
 ## Início rápido
 
 ~~~powershell

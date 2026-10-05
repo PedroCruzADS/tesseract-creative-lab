@@ -1,0 +1,25 @@
+{
+  "version": "v11",
+  "date": "2026-09-29",
+  "references": [
+    {"url": "https://developer.apple.com/design/human-interface-guidelines/motion", "attribute": "movement as feedback and focus, avoiding gratuitous distraction"},
+    {"url": "https://developer.apple.com/design/human-interface-guidelines/spatial-layout/", "attribute": "depth through layers, occlusion and scale without degrading text"},
+    {"url": "https://design.google/library/making-motion-meaningful", "attribute": "continuous shared-element movement and natural arcs"},
+    {"url": "https://www.adobe.com/in/creativecloud/roc/blog/design/what-is-motion-graphics.html", "attribute": "timing, anticipation, follow-through and kinetic hierarchy"}
+  ],
+  "directions": [
+    {"id": "A", "name": "Interface em camadas", "opening": "browser surface with layered graphite/red light and traveling reflection", "categories": "product cards on a dimensional ring, with staggered reveal", "offers": "quiet orbital drift plus center spotlight", "risk": "too much UI chrome"},
+    {"id": "B", "name": "Editorial de produto", "opening": "oversized type and tighter search crop", "categories": "one hero product at a time, editorial panels", "offers": "one condition per hero product", "risk": "changes the established six-category story"},
+    {"id": "C", "name": "Túnel de busca", "opening": "deep perspective push into search", "categories": "radial burst resolving to six cards", "offers": "slow orbit with light sweeps", "risk": "speed and perspective may obscure product details"}
+  ],
+  "selected": "A",
+  "selection_reason": "Keeps the user's approved search/category/offer narrative while replacing flat surfaces, and allows subtle motion during offers without dividing attention.",
+  "scenes": [
+    {"id": "opening_click", "time_s": [0,1], "focus": "browser button", "motion": "single tactile click, low-amplitude parallax, soft diagonal light"},
+    {"id": "search", "time_s": [1,5.5], "focus": "typed query", "motion": "continuous search card rise, traveling focus light and field progress"},
+    {"id": "categories", "time_s": [5.5,9.5], "focus": "one product/category at a time", "motion": "staggered cards, dimensional ring and 60-degree arc"},
+    {"id": "offers", "time_s": [9.5,14.6], "focus": "one condition in central hub", "motion": "orbit continues about 10 degrees total, reduced-speed highlights outside the hub"},
+    {"id": "brand_end", "time_s": [14.6,18], "focus": "slogan and domain", "motion": "slow depth drift and existing typed URL"}
+  ],
+  "constraints": ["1080x1920", "60 fps", "250px top and bottom conservative safe zone", "official CDF logo/products", "no new commercial claims", "no extra GIF"]
+}

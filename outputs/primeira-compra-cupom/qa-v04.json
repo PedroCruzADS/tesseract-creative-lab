@@ -1,0 +1,28 @@
+{
+ "version": "v04",
+ "file": "primeira-compra-cupom_stories-9x16_v04.mp4",
+ "duration_seconds": 18.0,
+ "width": 1080,
+ "height": 1920,
+ "fps": 60,
+ "video_codec": "h264",
+ "pixel_format": "yuv420p",
+ "audio_codec": "aac",
+ "channels": 2,
+ "sample_rate": 48000,
+ "lufs": -14.3,
+ "sample_peak_dbfs": -1.6,
+ "bytes": 12249487,
+ "sha256": "5f95dce61318bfd1ff93d9f25d3413d29c0747bce2685ca15af7c24a48616f24",
+ "hyperframes_check": {
+  "ok": true,
+  "errors": 0,
+  "warnings": 1,
+  "warning": "imagem TR3 repetida (carrossel e carrinho)"
+ },
+ "audio": "original: base 104 BPM sintetizada + Foley de interface no codigo (projeto/make_audio_v04.py), sem voz nem amostras de terceiros",
+ "visual_contact_sheet_inspected": "previews/filmstrip_v04.png",
+ "previous_version_archived": "versoes/v03/",
+ "commercial_status": "rascunho: confirmar a frase 'Mais de 20 anos de historia' e a elegibilidade/cumulatividade do cupom PRIMEIRACOMPRA no carrinho antes de veicular; condicoes de categoria vem de nomes de produto/URL/menu do site",
+ "platform_changes": false
+}

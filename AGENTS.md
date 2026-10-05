@@ -46,6 +46,8 @@ Registre timestamp/URL quando usar dados capturados de página.
 
 ## Roteamento de renderer
 
+Para inspecao, cortes, montagem, legendas, audio, exportacao e QA de arquivos, leia `.agents/skills/ffmpeg-skill/SKILL.md` e `docs/FFMPEG-SKILL.md`. Use `python scripts/ffmpeg_skill.py <ferramenta> <argumentos>` no Windows. A skill complementa os renderers e segue as regras comerciais e de composicao deste Lab.
+
 Use `docs/RENDERER-ROUTING.md`.
 
 Resumo:

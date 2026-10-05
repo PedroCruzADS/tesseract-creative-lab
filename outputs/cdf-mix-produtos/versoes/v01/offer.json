@@ -1,0 +1,35 @@
+{
+ "fonte": "Google Merchant Center CDF (conta 735600868) via Merchant API products/v1",
+ "capturado_em": "2026-09-23",
+ "uso_comercial": "nenhum - peca sem preco, desconto, parcelamento, frete ou cupom",
+ "produtos": [
+  {
+   "offer_id": "27",
+   "titulo_mc": "Bicicleta Spinning Mormaii Motion-S - Conexão Bluetooth",
+   "url": "https://www.casadofitness.com.br/bicicleta-spinning-mormaii-motion-s-conexao-bluetooth/p?idsku=27",
+   "imagem": "https://casadofitness.vteximg.com.br/arquivos/ids/163567/bicicleta-spinning-mormaii-motion-s-conexao-bluetooth_0.jpg.jpg?v=639219659714430000",
+   "arquivo": "assets\\cdf-merchant-teste\\product\\bike-mormaii-motion-s.png"
+  },
+  {
+   "offer_id": "33",
+   "titulo_mc": "Elíptico Eletromagnético Starke SH30 - Painel e Bluetooth",
+   "url": "https://www.casadofitness.com.br/eliptico-eletromagnetico-starke-sh30-painel-e-bluetooth/p?idsku=33",
+   "imagem": "https://casadofitness.vteximg.com.br/arquivos/ids/156917/sh30.jpg.jpg?v=639148092002030000",
+   "arquivo": "assets\\cdf-merchant-teste\\product\\eliptico-starke-sh30.png"
+  },
+  {
+   "offer_id": "19",
+   "titulo_mc": "Esteira Ergométrica Speedo TR7 - Alto desempenho VOLTAGEM:110V",
+   "url": "https://www.casadofitness.com.br/esteira-ergometrica-speedo-tr7/p?idsku=19",
+   "imagem": "https://casadofitness.vteximg.com.br/arquivos/ids/156677/01.jpg.jpg?v=639235439616630000",
+   "arquivo": "assets\\cdf-merchant-teste\\product\\esteira-speedo-tr7.png"
+  },
+  {
+   "offer_id": "67",
+   "titulo_mc": "Estação de Musculação Speedo Multi 3 - Com Leg Press",
+   "url": "https://www.casadofitness.com.br/estacao-de-musculacao-speedo-multi-3-com-leg-press/p?idsku=67",
+   "imagem": "https://casadofitness.vteximg.com.br/arquivos/ids/155823/estacao-de-musculacao-speedo-multi-3-com-leg-press_0.jpg.jpg?v=639250034319330000",
+   "arquivo": "assets\\cdf-merchant-teste\\product\\estacao-speedo-multi3.png"
+  }
+ ]
+}
