@@ -1,0 +1,118 @@
+name: Cloud Render Preview
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Slug em outputs/<slug>/"
+        required: true
+        default: "cdf-busca-categorias"
+        type: string
+      format:
+        description: "Formato"
+        required: true
+        default: "9x16"
+        type: choice
+        options: ["9x16", "4x5", "1x1"]
+      quality:
+        description: "Qualidade"
+        required: true
+        default: "preview"
+        type: choice
+        options: ["preview", "final"]
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/cloud-render.yml"
+      - "outputs/cdf-busca-categorias/cloud-render.sh"
+      - "outputs/cdf-busca-categorias/projeto/cloud/**"
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      CREATIVE_SLUG: ${{ github.event.inputs.slug || 'cdf-busca-categorias' }}
+      CREATIVE_FORMAT: ${{ github.event.inputs.format || '9x16' }}
+      CREATIVE_QUALITY: ${{ github.event.inputs.quality || 'preview' }}
+      TESSERACT_CLOUD: "1"
+
+    concurrency:
+      group: cloud-render-${{ github.event.inputs.slug || 'cdf-busca-categorias' }}-${{ github.event.inputs.format || '9x16' }}
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Validate cloud target
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$CREATIVE_SLUG" in
+            *[!A-Za-z0-9_-]*|'') echo "Invalid slug"; exit 2 ;;
+          esac
+          TARGET="outputs/$CREATIVE_SLUG/cloud-render.sh"
+          test -f "$TARGET" || {
+            echo "Missing $TARGET"
+            echo "The creative must provide a versioned cloud-render.sh."
+            exit 3
+          }
+
+      - name: Render
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .cloud-render
+          bash "outputs/$CREATIVE_SLUG/cloud-render.sh"
+          test -s .cloud-render/preview.mp4 || {
+            echo "cloud-render.sh must produce .cloud-render/preview.mp4"
+            exit 4
+          }
+
+      - name: Build review bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          ffmpeg -y -ss 0.3 -i .cloud-render/preview.mp4 -frames:v 1 -q:v 2 .cloud-render/poster.jpg
+          ffmpeg -y -i .cloud-render/preview.mp4 -vf "fps=12/18,scale='min(270,iw)':-2,tile=6x2:padding=8:margin=8" -frames:v 1 -q:v 2 .cloud-render/filmstrip.jpg
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=width,height,r_frame_rate,codec_name -of json .cloud-render/preview.mp4 > .cloud-render/metadata.json
+          {
+            echo "# Tesseract Lab — cloud render"
+            echo
+            echo "✅ **$CREATIVE_SLUG** · `$CREATIVE_FORMAT` · `$CREATIVE_QUALITY`"
+            echo
+            echo "O artifact desta execução contém o MP4, poster, filmstrip e metadata."
+          } > .cloud-render/summary.md
+
+      - name: Job summary
+        if: always()
+        shell: bash
+        run: |
+          if [ -f .cloud-render/summary.md ]; then cat .cloud-render/summary.md >> "$GITHUB_STEP_SUMMARY"; fi
+
+      - name: Upload preview bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tesseract-${{ env.CREATIVE_SLUG }}-${{ env.CREATIVE_FORMAT }}-${{ env.CREATIVE_QUALITY }}
+          path: .cloud-render/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+          include-hidden-files: true

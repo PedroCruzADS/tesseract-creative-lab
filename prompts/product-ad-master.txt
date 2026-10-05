@@ -1,4 +1,4 @@
-Leia AGENTS.md, docs/WORKFLOW.md, docs/RENDERER-ROUTING.md, docs/OFFER-TRUTH.md e docs/QA-PAID-MEDIA.md.
+Leia AGENTS.md, docs/WORKFLOW.md, docs/RENDERER-ROUTING.md, docs/OFFER-TRUTH.md, docs/MOTION-GRAMMAR.md, docs/COPY-GUARDRAILS.md e docs/QA-PAID-MEDIA.md.
 
 Objetivo: criar uma master de anúncio de produto para mídia paga.
 
@@ -11,8 +11,9 @@ Objetivo: criar uma master de anúncio de produto para mídia paga.
 7. Escolha Tesseract, HyperFrames, Remotion ou Hybrid conforme docs/RENDERER-ROUTING.md.
 8. Priorize produto > oferta > benefício > CTA, salvo se o brief definir outra hierarquia.
 9. Gere preview/snapshots/filmstrip apropriados ao renderer.
-10. Faça QA visual e comercial.
-11. Aplique notas de direção específicas, evitando pedidos vagos.
-12. Exporte master e só depois crie adaptações/variantes.
+10. Rode `prompts/creative-critic.txt`; corrija flags acionáveis e preserve o relatório no job.
+11. Faça QA visual e comercial.
+12. Aplique notas de direção específicas, evitando pedidos vagos.
+13. Exporte master e só depois crie adaptações/variantes.
 
 Não invente produto, característica técnica, preço, desconto, condição, logo, selo ou asset.

@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@font-face{font-family:Bai;src:url("./node_modules/@fontsource/bai-jamjuree/files/bai-jamjuree-latin-400-normal.woff2") format("woff2");font-weight:400}
+@font-face{font-family:Bai;src:url("./node_modules/@fontsource/bai-jamjuree/files/bai-jamjuree-latin-500-normal.woff2") format("woff2");font-weight:500}
+@font-face{font-family:Bai;src:url("./node_modules/@fontsource/bai-jamjuree/files/bai-jamjuree-latin-600-normal.woff2") format("woff2");font-weight:600}
+@font-face{font-family:Bai;src:url("./node_modules/@fontsource/bai-jamjuree/files/bai-jamjuree-latin-700-normal.woff2") format("woff2");font-weight:700}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#09090d;font-family:Bai,Arial,sans-serif}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;transform-origin:0 0;background:#09090d;color:#fff}
+.scene{position:absolute;inset:0;opacity:0;will-change:opacity}
+.brand-bg{background:linear-gradient(154deg,#08080b 0%,#300411 30%,#e50914 65%,#fa3312 86%,#e4e854 118%)}
+.haze{position:absolute;border-radius:50%;pointer-events:none}
+.logo-img{display:block;height:auto}
+.card-shadow{position:absolute;background:#dfe1e5}
+.browser-card{position:absolute;background:#fff;color:#0e0e11;overflow:hidden}
+.toolbar{position:absolute;left:0;top:0;width:100%;background:#f8f7f4}
+.dot{position:absolute;width:14px;height:14px;border-radius:50%;background:#d8dade}
+.dot.red{background:#e50914}
+.address{position:absolute;background:#fff;border-radius:26px;color:#707279;display:flex;align-items:center;padding-left:30px;font-weight:500}
+.brand-pill{position:absolute;border-radius:60px;background:linear-gradient(135deg,#fa222e,#b40013);display:flex;align-items:center;justify-content:center}
+.brand-pill img{width:79%;height:auto;display:block}
+.center-text{text-align:center}
+.headline{position:absolute;font-weight:700;line-height:1.08}
+.support{position:absolute;color:#575a60;font-weight:500;line-height:1.3}
+.search-shadow{position:absolute;background:#dfe1e5;border-radius:75px}
+.search-box{position:absolute;background:#fff;border-radius:75px;color:#111;display:flex;align-items:center;padding-left:132px;font-weight:500}
+.search-ring{position:absolute;width:40px;height:40px;border:7px solid #e50914;border-radius:50%}
+.search-ring:after{content:"";position:absolute;width:26px;height:7px;background:#e50914;right:-23px;bottom:-10px;transform:rotate(45deg);border-radius:4px}
+.search-progress{position:absolute;height:5px;background:#e50914;border-radius:4px;transform-origin:left center}
+.red-btn{position:absolute;background:#e50914;color:#fff;border-radius:60px;display:flex;align-items:center;justify-content:center;font-weight:700;letter-spacing:.03em}
+.cursor{position:absolute;width:40px;height:58px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25));transform-origin:top left}
+.cursor svg{width:100%;height:100%}
+.orbit-bg{background:linear-gradient(156deg,#08080b 0%,#330310 31%,#e50914 69%,#fa3312 100%)}
+.orbit-title{position:absolute;left:90px;top:262px;width:900px;height:190px;font-size:66px;line-height:1.04;font-weight:700;text-align:center}
+.orbit-halo{position:absolute;left:125px;top:545px;width:830px;height:830px;border-radius:50%;background:rgba(255,255,255,.06)}
+.orbit-plate{position:absolute;left:140px;top:560px;width:800px;height:800px;border-radius:50%;background:rgba(255,255,255,.10)}
+.orbit-haze-a{position:absolute;left:-130px;top:220px;width:540px;height:540px;border-radius:50%;background:#e50914;opacity:.45}
+.orbit-haze-b{position:absolute;left:720px;top:1180px;width:550px;height:550px;border-radius:50%;background:#e4e854;opacity:.09}
+.scan{position:absolute;width:18px;height:18px;border-radius:50%;background:#e4e854}
+.hub-shadow{position:absolute;left:348px;top:848px;width:384px;height:242px;border-radius:121px;background:#000;opacity:.45}
+.hub{position:absolute;left:350px;top:840px;width:380px;height:240px;border-radius:120px;background:linear-gradient(145deg,#26262a,#050506);text-align:center;box-shadow:0 18px 45px rgba(0,0,0,.25)}
+.hub img{position:absolute;left:56px;top:47px;width:269px;height:auto;display:block}
+.hub-copy{position:absolute;left:30px;top:132px;width:320px;height:40px;font-size:22px;font-weight:600;text-align:center}
+.offer{position:absolute;left:380px;top:966px;width:320px;height:50px;text-align:center;font-size:26px;line-height:1.05;font-weight:700;color:#e4e854;display:flex;align-items:center;justify-content:center}
+.note{position:absolute;left:125px;top:1530px;width:830px;height:48px;text-align:center;font-size:28px;font-weight:600;color:rgba(255,255,255,.94)}
+.cat-card{position:absolute;width:200px;height:210px;margin-left:-100px;margin-top:-105px;border-radius:36px;background:#fff;color:#08080b;box-shadow:0 18px 32px rgba(0,0,0,.38);overflow:hidden;opacity:0}
+.cat-card .accent{position:absolute;left:24px;top:22px;width:39px;height:5px;border-radius:3px;background:#e50914}
+.cat-card img.product{position:absolute;left:18px;top:28px;width:164px;height:128px;object-fit:contain;mix-blend-mode:multiply;transform-origin:center center}
+.cat-card .label{position:absolute;left:8px;right:8px;bottom:18px;text-align:center;font-size:24px;font-weight:700}
+.cat-card .fake-elliptical{position:absolute;left:28px;top:35px;width:144px;height:118px}
+.end-bg{background:linear-gradient(155deg,#08080b 0%,#26030d 52%,#e50914 83%,#fa3312 100%)}
+.end-halo{position:absolute;left:900px;top:1130px;width:480px;height:480px;border-radius:50%;background:#e4e854;opacity:.20}
+.end-logo{position:absolute;left:278px;top:582px;width:525px;height:71px}
+.end-logo img{width:525px;height:auto;display:block}
+.end-slogan{position:absolute;left:95px;top:776px;width:890px;height:174px;font-size:76px;line-height:1.03;font-weight:700;text-align:center}
+.end-cats{position:absolute;left:96px;top:1010px;width:888px;height:120px;font-size:34px;line-height:1.28;font-weight:500;color:#d7d7dc;text-align:center}
+.rule{position:absolute;left:440px;width:200px;height:5px;border-radius:3px;background:#e4e854;transform-origin:left center}
+.domain{position:absolute;left:154px;top:1272px;width:772px;height:72px;font-size:50px;font-weight:700;color:#fff;white-space:nowrap;text-align:left}
+.white-wash{position:absolute;inset:0;background:#fff;opacity:0;z-index:80}
+</style>
+</head>
+<body>
+<div id="stage">
+  <section id="clickScene" class="scene brand-bg">
+    <div id="clickShadow" class="card-shadow" style="left:176px;top:562px;width:728px;height:820px;border-radius:52px"></div>
+    <div id="clickBrowser" class="browser-card" style="left:180px;top:550px;width:720px;height:820px;border-radius:52px">
+      <div class="toolbar" style="height:84px"></div>
+      <div class="dot red" style="left:46px;top:34px;width:16px;height:16px"></div>
+      <div class="dot" style="left:76px;top:34px;width:16px;height:16px"></div>
+      <div class="dot" style="left:106px;top:34px;width:16px;height:16px"></div>
+      <div class="brand-pill" style="left:90px;top:126px;width:540px;height:150px"><img src="assets/cdf-logo-vector.svg"></div>
+      <div class="search-shadow" style="left:60px;top:348px;width:600px;height:112px;border-radius:56px;background:#f7f7f7"></div>
+      <div class="support" style="left:110px;top:376px;width:520px;height:56px;font-size:34px;color:#56585f">Pesquisar equipamentos</div>
+      <div id="openBtn" class="red-btn" style="left:210px;top:570px;width:300px;height:120px;font-size:42px">ABRIR</div>
+      <div id="openPulse" style="position:absolute;left:196px;top:556px;width:328px;height:148px;border-radius:74px;background:#e50914;opacity:0"></div>
+      <div id="clickCursor" class="cursor" style="left:666px;top:580px"><svg viewBox="0 0 28 42"><path d="M2 2v31l8-8 6 14 6-3-6-13h11z" fill="white" stroke="#111" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    </div>
+  </section>
+
+  <section id="searchScene" class="scene brand-bg">
+    <div class="haze" style="left:700px;top:1180px;width:520px;height:720px;background:#e4e854;opacity:.14"></div>
+    <div id="browserShadow" class="card-shadow" style="left:72px;top:312px;width:936px;height:1140px;border-radius:53px"></div>
+    <div id="browser" class="browser-card" style="left:75px;top:300px;width:930px;height:1140px;border-radius:50px">
+      <div class="toolbar" style="height:100px"></div>
+      <div class="dot red" style="left:40px;top:42px"></div>
+      <div class="dot" style="left:68px;top:42px"></div>
+      <div class="dot" style="left:96px;top:42px"></div>
+      <div class="address" style="left:195px;top:24px;width:603px;height:52px;font-size:30px">Pesquisar</div>
+      <div class="brand-pill" style="left:285px;top:164px;width:360px;height:104px"><img src="assets/cdf-logo-vector.svg"></div>
+      <div class="headline center-text" style="left:35px;top:308px;width:860px;height:180px;font-size:74px">Seu próximo treino<br>começa aqui.</div>
+      <div class="search-shadow" style="left:51px;top:568px;width:828px;height:142px"></div>
+      <div id="searchBox" class="search-box" style="left:55px;top:562px;width:820px;height:142px;font-size:42px"><span id="typed"></span></div>
+      <div class="search-ring" style="left:101px;top:614px"></div>
+      <div id="searchProgress" class="search-progress" style="left:95px;top:700px;width:740px"></div>
+      <div id="support" class="support center-text" style="left:25px;top:776px;width:880px;height:100px;font-size:37px">Esteiras, bicicletas, musculação, acessórios...</div>
+      <div id="findBtn" class="red-btn" style="left:265px;top:956px;width:400px;height:104px;font-size:37px">ENCONTRAR</div>
+      <div id="findCursor" class="cursor" style="left:828px;top:820px"><svg viewBox="0 0 28 42"><path d="M2 2v31l8-8 6 14 6-3-6-13h11z" fill="white" stroke="#111" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div id="wash" class="white-wash"></div>
+  </section>
+
+  <section id="orbitScene" class="scene orbit-bg">
+    <div class="orbit-haze-a"></div><div class="orbit-haze-b"></div>
+    <div id="orbitTitle" class="orbit-title">Monte a academia<br>da sua casa.</div>
+    <div class="orbit-halo"></div><div class="orbit-plate"></div>
+    <div id="scan1" class="scan" style="opacity:.75"></div>
+    <div id="scan2" class="scan" style="opacity:.38"></div>
+    <div id="scan3" class="scan" style="opacity:.16"></div>
+    <div class="hub-shadow"></div>
+    <div id="hub" class="hub"><div><img src="assets/cdf-logo-vector.svg"><div id="hubCopy" class="hub-copy">TUDO PARA SE MOVER</div></div></div>
+    <div id="cards"></div>
+    <div id="offer" class="offer"></div>
+    <div id="offerNote" class="note">*Consulte condições no site.</div>
+  </section>
+
+  <section id="endScene" class="scene end-bg">
+    <div class="end-halo"></div>
+    <div id="endLogo" class="end-logo"><img src="assets/cdf-logo-vector.svg"></div>
+    <div id="endSlogan" class="end-slogan">Sua saúde,<br>nosso impulso.</div>
+    <div id="endRule" class="rule" style="top:970px"></div>
+    <div id="endCats" class="end-cats">Esteiras • Bicicletas • Musculação<br>Acessórios e muito mais</div>
+    <div id="domain" class="domain"></div>
+    <div id="domainRule" class="rule" style="top:1356px"></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  
+  const clamp=function(v,a,b){a=a===undefined?0:a;b=b===undefined?1:b;return Math.max(a,Math.min(b,v))};
+  const smooth=function(v){v=clamp(v);return v*v*(3-2*v)};
+  const easeOut=function(v){v=clamp(v);return 1-Math.pow(1-v,3)};
+  const set=function(el,k,v){el.style[k]=v};
+
+  const clickScene=document.getElementById("clickScene");
+  const searchScene=document.getElementById("searchScene");
+  const orbitScene=document.getElementById("orbitScene");
+  const endScene=document.getElementById("endScene");
+  const typed=document.getElementById("typed");
+  const searchProgress=document.getElementById("searchProgress");
+  const support=document.getElementById("support");
+  const findBtn=document.getElementById("findBtn");
+  const findCursor=document.getElementById("findCursor");
+  const wash=document.getElementById("wash");
+  const clickCursor=document.getElementById("clickCursor");
+  const openBtn=document.getElementById("openBtn");
+  const openPulse=document.getElementById("openPulse");
+  const orbitTitle=document.getElementById("orbitTitle");
+  const hub=document.getElementById("hub");
+  const hubCopy=document.getElementById("hubCopy");
+  const offer=document.getElementById("offer");
+  const offerNote=document.getElementById("offerNote");
+  const domain=document.getElementById("domain");
+
+  const cardsData=[
+    {label:"ESTEIRAS",img:"assets/treadmill.jpg",angle:-90},
+    {label:"BICICLETAS",img:"assets/bike.jpg",angle:-30},
+    {label:"ACESSÓRIOS",img:"assets/dumbbell.jpg",angle:30,scale:1.45},
+    {label:"MUSCULAÇÃO",img:"assets/station.jpg",angle:90},
+    {label:"REMO",img:"assets/rower.jpg",angle:150,scale:1.72},
+    {label:"ELÍPTICOS",img:"assets/elliptical.jpg",angle:210,scale:1.13}
+  ];
+  const cards=document.getElementById("cards");
+  cardsData.forEach(function(d,i){
+    const el=document.createElement("div");
+    el.className="cat-card";el.id="card"+i;
+    let media=d.img?'<img class="product" src="'+d.img+'" style="transform:scale('+(d.scale||1)+')">':'';
+    el.innerHTML='<div class="accent"></div>'+media+'<div class="label">'+d.label+'</div>';
+    cards.appendChild(el);
+  });
+  const offers=["ATÉ 18X SEM JUROS","GARANTIA DE 2 ANOS*","5% OFF NO PIX","FRETE GRÁTIS*"];
+  const phrase="equipamentos fitness para casa";
+
+  function sceneOpacity(el,on){el.style.opacity=on?"1":"0"}
+
+  window.seek=function(t){
+    sceneOpacity(clickScene,t<1);
+    sceneOpacity(searchScene,t>=1&&t<5.5);
+    sceneOpacity(orbitScene,t>=5.5&&t<14.6);
+    sceneOpacity(endScene,t>=14.6);
+
+    if(t<1){
+      const p=easeOut(t/.64);
+      document.getElementById("clickBrowser").style.transform="translateY("+(12*(1-p)-8*p)+"px)";
+      document.getElementById("clickShadow").style.transform="translateY("+(12*(1-p)-8*p)+"px)";
+      const cm=smooth(t/.65);
+      clickCursor.style.transform="translate("+(-172*cm)+"px,"+(46*cm)+"px)";
+      const press=clamp((t-.65)/.29);
+      openBtn.style.transform="scale("+(1-.05*Math.sin(Math.PI*press))+")";
+      const pulse=clamp((t-.64)/.36);
+      openPulse.style.opacity=String(Math.max(0,Math.sin(Math.PI*pulse)*.24));
+    }
+
+    if(t>=1&&t<5.5){
+      const lt=t-1;
+      const p=easeOut(lt/.76);
+      document.getElementById("browser").style.transform="translateY("+(56*(1-p)-8*clamp((lt-.76)/3.74))+"px)";
+      document.getElementById("browserShadow").style.transform="translateY("+(56*(1-p)-8*clamp((lt-.76)/3.74))+"px)";
+      const fade=clamp((lt-.45)/.6);
+      support.style.opacity=String(fade);
+      findBtn.style.opacity=String(fade);
+      const chars=Math.floor(clamp((lt-1.05)/2.6)*phrase.length);
+      typed.textContent=phrase.slice(0,chars);
+      searchProgress.style.transform="scaleX("+clamp((lt-.95)/2.75)+")";
+      const curVis=clamp((lt-3.37)/.16);
+      findCursor.style.opacity=String(curVis);
+      const move=smooth((lt-3.5)/.64);
+      findCursor.style.transform="translate("+(-208*move)+"px,"+(208*move)+"px)";
+      const press=clamp((lt-4.14)/.30);
+      findBtn.style.transform="scale("+(1-.05*Math.sin(Math.PI*press))+")";
+      wash.style.opacity=String(clamp((lt-4.30)/.20));
+    }
+
+    if(t>=5.5&&t<14.6){
+      const lt=t-5.5;
+      orbitTitle.style.transform="translateY("+(48*(1-easeOut(lt/.56))-5*clamp((lt-.56)/8.54))+"px)";
+      orbitTitle.style.opacity=String(clamp(lt/.50));
+      const scanEls=[document.getElementById("scan1"),document.getElementById("scan2"),document.getElementById("scan3")];
+      scanEls.forEach(function(el,j){
+        const lag=j*.18;
+        const phase=-113+115*smooth(Math.max(0,lt-lag)/9.1);
+        const a=phase*Math.PI/180;
+        el.style.left=(540+400*Math.cos(a)-9)+"px";
+        el.style.top=(960+400*Math.sin(a)-9)+"px";
+      });
+
+      cardsData.forEach(function(d,i){
+        const el=document.getElementById("card"+i);
+        const delay=.30+i*.62;
+        const entry=easeOut((lt-delay)/.70);
+        const turn=84*smooth(lt/8.5);
+        const a=(d.angle+turn)*Math.PI/180;
+        const r=362+13*entry;
+        const cx=540+r*Math.cos(a), cy=960+r*Math.sin(a);
+        const hi=4.3+i*.7;
+        const hp=clamp((lt-(hi-.12))/.90);
+        const halo=Math.sin(Math.PI*hp);
+        const pulse=1+.07*halo;
+        el.style.left=cx+"px";el.style.top=cy+"px";
+        el.style.opacity=String(entry);
+        el.style.transform="scale("+((.94+.06*entry)*pulse)+")";
+        el.style.boxShadow="0 18px 32px rgba(0,0,0,.38), 0 0 0 "+(3.5*halo)+"px rgba(228,232,84,"+(0.95*halo)+")";
+      });
+
+      const hubIn=easeOut(lt/.78);
+      hub.style.transform="translateY("+(50*(1-hubIn)-5*clamp((lt-.78)/8.32))+"px)";
+      hub.style.opacity=String(clamp(lt/.48));
+      const hide=lt>=2.7&&lt<7.1;
+      hubCopy.style.opacity=hide?"0":"1";
+
+      offer.textContent="";
+      offer.style.opacity="0";
+      const starts=[2.6,3.72,4.84,5.96];
+      for(let i=0;i<4;i++){
+        const local=lt-starts[i];
+        if(local>=0&&local<1.12){
+          offer.textContent=offers[i];
+          offer.style.opacity=String(Math.max(0,Math.min(1,local/.18,(1.12-local)/.22)));
+          break;
+        }
+      }
+      offerNote.style.opacity=String(clamp((lt-1.9)/.3));
+    }
+
+    if(t>=14.6){
+      const lt=t-14.6;
+      const logoP=easeOut(lt/.78);
+      document.getElementById("endLogo").style.transform="translateY("+(56*(1-logoP)-5*clamp((lt-.78)/2.62))+"px) scale("+(0.91+.09*logoP)+")";
+      document.getElementById("endLogo").style.opacity=String(clamp(lt/.48));
+      const sP=easeOut((lt-.30)/.59);
+      document.getElementById("endSlogan").style.transform="translateY("+(56*(1-sP)-5*clamp((lt-.89)/2.51))+"px)";
+      document.getElementById("endSlogan").style.opacity=String(clamp((lt-.24)/.22));
+      document.getElementById("endRule").style.transform="scaleX("+clamp((lt-.55)/.65)+")";
+      document.getElementById("endCats").style.opacity=String(clamp((lt-.80)/.48));
+      const d="www.casadofitness.com.br";
+      const chars=Math.floor(clamp((lt-1.10)/1.25)*d.length);
+      domain.textContent=d.slice(0,chars);
+      document.getElementById("domainRule").style.transform="scaleX("+clamp((lt-2.60)/.60)+")";
+    }
+  };
+  window.seek(0);
+})();
+</script>
+</body>
+</html>

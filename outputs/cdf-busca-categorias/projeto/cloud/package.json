@@ -1,0 +1,12 @@
+{
+  "name": "cdf-busca-categorias-cloud",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "playwright": "1.55.0",
+    "@fontsource/bai-jamjuree": "5.2.6"
+  },
+  "scripts": {
+    "render": "node render.mjs"
+  }
+}
