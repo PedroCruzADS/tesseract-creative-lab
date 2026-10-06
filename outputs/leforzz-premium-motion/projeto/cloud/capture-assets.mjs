@@ -1,12 +1,17 @@
-import {chromium} from 'playwright';
 import {createHash} from 'node:crypto';
-import {mkdirSync, readFileSync, writeFileSync} from 'node:fs';
+import {mkdirSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
 const assetsDir=resolve(process.cwd(),'assets');
 mkdirSync(assetsDir,{recursive:true});
 
-const products=[
+const assets=[
+  {
+    id:'logo',
+    file:'logo.svg',
+    source:'https://www.leforzz.com/',
+    url:'https://leforzzfast.vtexassets.com/assets/vtex.file-manager-graphql/images/b06c8cca-c045-4bce-b458-e79d5b4b2b56___789404fe5348f153a3b0f0ce755fbaf9.svg?width=140&aspect=true'
+  },
   {
     id:'runverse',
     file:'runverse.jpg',
@@ -39,57 +44,13 @@ async function download(item){
   const res=await fetch(item.url,{headers:{'user-agent':'Mozilla/5.0 TesseractCreativeLab/1.0'}});
   if(!res.ok) throw new Error(`asset ${item.id}: HTTP ${res.status}`);
   const body=Buffer.from(await res.arrayBuffer());
-  if(body.length<2000) throw new Error(`asset ${item.id}: suspiciously small (${body.length} bytes)`);
+  if(body.length<800) throw new Error(`asset ${item.id}: suspiciously small (${body.length} bytes)`);
   writeFileSync(resolve(assetsDir,item.file),body);
   return {...item,bytes:body.length,sha256:sha256(body),contentType:res.headers.get('content-type')};
 }
 
-async function captureLogo(){
-  const browser=await chromium.launch({headless:true});
-  try{
-    const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:2});
-    await page.goto('https://www.leforzz.com/',{waitUntil:'domcontentloaded',timeout:90000});
-    await page.waitForTimeout(2500);
-
-    const candidates=await page.locator('header img, header svg, nav img, nav svg, a img, a svg').evaluateAll(nodes=>nodes.map((el,i)=>{
-      const r=el.getBoundingClientRect();
-      const text=[el.getAttribute('alt'),el.getAttribute('class'),el.getAttribute('src'),el.getAttribute('aria-label')].filter(Boolean).join(' ').toLowerCase();
-      const ratio=r.height?r.width/r.height:0;
-      let score=0;
-      if(/logo|le\s*forzz|leforzz/.test(text)) score+=10;
-      if(r.width>=90&&r.height>=18&&ratio>=2&&ratio<=12) score+=4;
-      if(el.closest('header,nav')) score+=3;
-      if(r.top<300) score+=1;
-      return {i,tag:el.tagName.toLowerCase(),text,width:r.width,height:r.height,ratio,score,src:el.getAttribute('src')||'',outer:el.tagName.toLowerCase()==='svg'?el.outerHTML:''};
-    }));
-    const viable=candidates.filter(c=>c.width>40&&c.height>12).sort((a,b)=>b.score-a.score);
-    if(!viable.length) throw new Error('official logo element not found on homepage');
-    const winner=viable[0];
-
-    const isolated=await browser.newPage({viewport:{width:1000,height:300},deviceScaleFactor:2});
-    let markup='';
-    if(winner.tag==='img'&&winner.src){
-      const src=new URL(winner.src,page.url()).href;
-      markup=`<img id="mark" src="${src}" style="display:block;max-width:860px;max-height:220px">`;
-    }else if(winner.outer){
-      markup=winner.outer.replace('<svg','<svg id="mark"');
-    }else{
-      throw new Error('logo candidate has no reusable source');
-    }
-    await isolated.setContent(`<html><head><style>html,body{margin:0;padding:20px;background:transparent}#mark{display:block}</style></head><body>${markup}</body></html>`,{waitUntil:'load'});
-    await isolated.locator('#mark').waitFor({state:'visible',timeout:30000});
-    const logoPath=resolve(assetsDir,'logo.png');
-    await isolated.locator('#mark').screenshot({path:logoPath,omitBackground:true});
-    const buf=readFileSync(logoPath);
-    return {id:'logo',file:'logo.png',source:'https://www.leforzz.com/',discovery:winner,bytes:buf.length,sha256:sha256(buf)};
-  } finally {
-    await browser.close();
-  }
-}
-
 const captured=[];
-for(const item of products) captured.push(await download(item));
-captured.push(await captureLogo());
+for(const item of assets) captured.push(await download(item));
 const manifest={
   capturedAt:new Date().toISOString(),
   brand:'Le Forzz',
