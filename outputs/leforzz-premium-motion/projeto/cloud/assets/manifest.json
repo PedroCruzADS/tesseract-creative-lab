@@ -7,6 +7,13 @@
   },
   "assets": [
     {
+      "id": "logo",
+      "kind": "official homepage SVG",
+      "page": "https://www.leforzz.com/",
+      "url": "https://leforzzfast.vtexassets.com/assets/vtex.file-manager-graphql/images/b06c8cca-c045-4bce-b458-e79d5b4b2b56___789404fe5348f153a3b0f0ce755fbaf9.svg?width=140&aspect=true",
+      "discovered_in": "first cloud capture, 2026-10-06"
+    },
+    {
       "id": "runverse",
       "kind": "official product packshot",
       "page": "https://www.leforzz.com/esteira-ergometrica-le-forzz-runverse-touch-screen-330/p",
@@ -29,12 +36,6 @@
       "kind": "official product packshot",
       "page": "https://www.leforzz.com/supino-vertical-digital-unilateral-konnect-le-forzz-lfk-c33/p",
       "url": "https://leforzzfast.vtexassets.com/assets/vtex.file-manager-graphql/images/d8fe75df-6051-423e-b8bc-3e1a2d75f37a___37e159483c48cee1308128cbeca82c05.png?aspect=true&width=600"
-    },
-    {
-      "id": "logo",
-      "kind": "official homepage logo element",
-      "page": "https://www.leforzz.com/",
-      "capture": "Discovered in header/nav and rasterized exactly by Playwright; never redrawn. SHA-256 written to runtime capture.json."
     }
   ]
 }
