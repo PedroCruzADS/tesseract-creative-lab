@@ -12,6 +12,8 @@ cd "$PROJECT"
 npm install --no-audit --no-fund
 npx playwright install --with-deps chromium
 npm run capture
+ffmpeg -y -v error -i assets/runverse.jpg -vf "format=rgba,colorkey=0xFFFFFF:0.14:0.05" -frames:v 1 assets/runverse-cutout.png
+ffmpeg -y -v error -i assets/konnect-leg-press.png -vf "format=rgba,colorkey=0xFFFFFF:0.12:0.05" -frames:v 1 assets/konnect-leg-press-cutout.png
 rm -rf "$OUT/assets"
 cp -R assets "$OUT/assets"
 cp assets/capture.json "$OUT/asset-capture.json"
