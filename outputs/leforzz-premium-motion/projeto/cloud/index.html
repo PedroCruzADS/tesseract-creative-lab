@@ -15,10 +15,10 @@
 .light{position:absolute;width:880px;height:1500px;left:-540px;top:180px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.92),rgba(255,255,255,.32) 43%,rgba(255,255,255,0) 76%);filter:blur(20px);opacity:.9}
 .title{position:absolute;left:84px;top:150px;width:860px;font-size:82px;line-height:.96;letter-spacing:-.058em;font-weight:500}
 .sub{position:absolute;left:88px;top:350px;width:800px;font-size:29px;line-height:1.35;color:#555;font-weight:400}
-.hero{position:absolute;left:28px;top:520px;width:1024px;height:900px;display:flex;align-items:center;justify-content:center}
-.hero img{max-width:1000px;max-height:820px;object-fit:contain;display:block;mix-blend-mode:multiply;filter:drop-shadow(0 36px 42px rgba(0,0,0,.14))}
-.scene2 .hero{top:495px;height:925px}
-.scene2 .hero img{max-width:980px;max-height:830px}
+.hero{position:absolute;left:18px;top:500px;width:1044px;height:940px;display:flex;align-items:center;justify-content:center}
+.hero img{max-width:1020px;max-height:860px;object-fit:contain;display:block;filter:drop-shadow(0 34px 38px rgba(0,0,0,.15))}
+.scene2 .hero{top:475px;height:965px}
+.scene2 .hero img{max-width:1000px;max-height:860px}
 .close-glow{position:absolute;width:760px;height:760px;border-radius:50%;filter:blur(105px);background:#fff;opacity:.045;left:160px;top:450px}
 .close-logo{position:absolute;left:170px;top:655px;width:740px;height:150px;display:flex;align-items:center;justify-content:center}
 .close-logo img{width:500px;height:auto;display:block;filter:brightness(0) invert(1)}
@@ -33,13 +33,13 @@
     <div id="light1" class="light"></div><div class="grain"></div>
     <div id="s1t" class="title">Cardio além<br>do físico.</div>
     <div id="s1s" class="sub">Runverse · tecnologia, biomecânica e design em equilíbrio.</div>
-    <div id="s1h" class="hero"><img src="assets/runverse.jpg" alt="Runverse Le Forzz"></div>
+    <div id="s1h" class="hero"><img src="assets/runverse-cutout.png" alt="Runverse Le Forzz"></div>
   </section>
   <section id="s2" class="scene paper scene2">
     <div id="light2" class="light"></div><div class="grain"></div>
     <div id="s2t" class="title">Força com<br>controle absoluto.</div>
     <div id="s2s" class="sub">Konnect · resistência digital e precisão aplicada ao movimento.</div>
-    <div id="s2h" class="hero"><img src="assets/konnect-leg-press.png" alt="Leg Press Konnect Le Forzz"></div>
+    <div id="s2h" class="hero"><img src="assets/konnect-leg-press-cutout.png" alt="Leg Press Konnect Le Forzz"></div>
   </section>
   <section id="s3" class="scene dark">
     <div id="closeGlow" class="close-glow"></div><div class="grain"></div>
@@ -59,36 +59,36 @@
   const show=(el,on)=>el.style.opacity=on?'1':'0';
   const y=(id,n)=>q(id).style.transform='translateY('+n+'px)';
   window.seek=t=>{
-    show(s1,t<2.9); show(s2,t>=2.9&&t<5.9); show(s3,t>=5.9);
+    show(s1,t<2.7); show(s2,t>=2.7&&t<5.4); show(s3,t>=5.4);
     wipe.style.transform='scaleX(0)';
-    if(t<2.9){
-      const p=out(t/.62), drift=clamp((t-.62)/2.28);
-      q('s1h').style.transform='translateY('+(50*(1-p)-13*drift)+'px) scale('+(.958+.042*p+.012*drift)+')';
-      q('s1h').style.opacity=String(clamp(t/.25));
-      y('s1t',34*(1-out((t-.10)/.5))); q('s1t').style.opacity=String(clamp((t-.06)/.28));
-      y('s1s',22*(1-out((t-.28)/.48))); q('s1s').style.opacity=String(clamp((t-.24)/.3));
-      q('light1').style.transform='translateX('+(620*clamp(t/2.9))+'px) scale('+(1+.08*clamp(t/2.9))+')';
-      q('light1').style.opacity=String(.64+.24*Math.sin(Math.PI*clamp(t/2.9)));
-      if(t>2.5) wipe.style.transform='scaleX('+inn((t-2.5)/.4)+')';
+    if(t<2.7){
+      const p=out(t/.58), drift=clamp((t-.58)/2.12);
+      q('s1h').style.transform='translateY('+(52*(1-p)-15*drift)+'px) scale('+(.95+.05*p+.018*drift)+')';
+      q('s1h').style.opacity=String(clamp(t/.23));
+      y('s1t',34*(1-out((t-.08)/.46))); q('s1t').style.opacity=String(clamp((t-.04)/.26));
+      y('s1s',22*(1-out((t-.25)/.44))); q('s1s').style.opacity=String(clamp((t-.21)/.28));
+      q('light1').style.transform='translateX('+(650*clamp(t/2.7))+'px) scale('+(1+.1*clamp(t/2.7))+')';
+      q('light1').style.opacity=String(.6+.28*Math.sin(Math.PI*clamp(t/2.7)));
+      if(t>2.3) wipe.style.transform='scaleX('+inn((t-2.3)/.4)+')';
     }
-    if(t>=2.9&&t<5.9){
-      const lt=t-2.9,p=out(lt/.6),drift=clamp((lt-.6)/2.4);
-      q('s2h').style.transform='translateY('+(54*(1-p)-12*drift)+'px) scale('+(.955+.045*p+.012*drift)+')';
-      q('s2h').style.opacity=String(clamp(lt/.25));
-      y('s2t',32*(1-out((lt-.10)/.48))); q('s2t').style.opacity=String(clamp((lt-.06)/.28));
-      y('s2s',22*(1-out((lt-.28)/.46))); q('s2s').style.opacity=String(clamp((lt-.24)/.3));
-      q('light2').style.transform='translateX('+(650*clamp(lt/3))+'px) scale('+(1+.08*clamp(lt/3))+')';
-      q('light2').style.opacity=String(.62+.25*Math.sin(Math.PI*clamp(lt/3)));
-      if(lt>2.58) wipe.style.transform='scaleX('+inn((lt-2.58)/.42)+')';
+    if(t>=2.7&&t<5.4){
+      const lt=t-2.7,p=out(lt/.58),drift=clamp((lt-.58)/2.12);
+      q('s2h').style.transform='translateY('+(54*(1-p)-14*drift)+'px) scale('+(.95+.05*p+.018*drift)+')';
+      q('s2h').style.opacity=String(clamp(lt/.23));
+      y('s2t',32*(1-out((lt-.08)/.46))); q('s2t').style.opacity=String(clamp((lt-.04)/.26));
+      y('s2s',22*(1-out((lt-.25)/.44))); q('s2s').style.opacity=String(clamp((lt-.21)/.28));
+      q('light2').style.transform='translateX('+(680*clamp(lt/2.7))+'px) scale('+(1+.1*clamp(lt/2.7))+')';
+      q('light2').style.opacity=String(.59+.29*Math.sin(Math.PI*clamp(lt/2.7)));
+      if(lt>2.28) wipe.style.transform='scaleX('+inn((lt-2.28)/.42)+')';
     }
-    if(t>=5.9){
-      const lt=t-5.9,p=clamp(lt/2.6),lp=out(lt/.62);
-      q('logo').style.opacity=String(clamp(lt/.34));
-      q('logo').style.transform='translateY('+(36*(1-lp)-7*p)+'px) scale('+(.96+.04*lp+.009*p)+')';
-      q('closeCopy').style.opacity=String(clamp((lt-.28)/.38)); y('closeCopy',24*(1-out((lt-.28)/.52))-5*p);
-      q('closeMeta').style.opacity=String(clamp((lt-.64)/.4));
-      q('closeGlow').style.transform='translateX('+(170*p-85)+'px) translateY('+(-55*p)+'px) scale('+(1+.12*p)+')';
-      q('closeGlow').style.opacity=String(.035+.075*Math.sin(Math.PI*Math.min(.92,p)));
+    if(t>=5.4){
+      const lt=t-5.4,p=clamp(lt/1.5),lp=out(lt/.48);
+      q('logo').style.opacity=String(clamp(lt/.25));
+      q('logo').style.transform='translateY('+(34*(1-lp)-5*p)+'px) scale('+(.96+.04*lp+.01*p)+')';
+      q('closeCopy').style.opacity=String(clamp((lt-.22)/.3)); y('closeCopy',22*(1-out((lt-.22)/.4))-4*p);
+      q('closeMeta').style.opacity=String(clamp((lt-.5)/.3));
+      q('closeGlow').style.transform='translateX('+(170*p-85)+'px) translateY('+(-50*p)+'px) scale('+(1+.13*p)+')';
+      q('closeGlow').style.opacity=String(.04+.075*Math.sin(Math.PI*Math.min(.94,p)));
     }
   };
   window.seek(0);
