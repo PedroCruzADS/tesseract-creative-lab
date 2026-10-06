@@ -1,0 +1,7 @@
+{
+  "name":"leforzz-premium-motion",
+  "private":true,
+  "type":"module",
+  "dependencies":{"playwright":"1.55.0","@fontsource/inter":"5.2.6"},
+  "scripts":{"capture":"node capture-assets.mjs","render":"node render.mjs"}
+}
