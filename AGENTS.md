@@ -13,11 +13,12 @@ Leia, nesta ordem:
 4. `docs/QA-PAID-MEDIA.md`
 5. `docs/COMPOSITION-QA.md` quando aplicável
 6. `docs/MOTION-GRAMMAR.md` para vídeo/motion
-7. `docs/COPY-GUARDRAILS.md`
-8. `docs/REFERENCE-SOURCES.md` quando houver referência
-9. o brief específico
-10. o snapshot comercial associado, quando existir
-11. `docs/REFERENCE-DIRECTION.md` se houver referências
+7. `docs/TASTE-MOTION-GATES.md` para vídeo/motion
+8. `docs/COPY-GUARDRAILS.md`
+9. `docs/REFERENCE-SOURCES.md` quando houver referência
+10. o brief específico
+11. o snapshot comercial associado, quando existir
+12. `docs/REFERENCE-DIRECTION.md` se houver referências
 
 Inspecione visualmente os assets autorizados.
 
@@ -34,8 +35,11 @@ Inspecione visualmente os assets autorizados.
 - Mantenha elementos editáveis sempre que o renderer permitir.
 - Referências podem orientar pacing, enquadramento, densidade, tipografia, câmera e transições. Não copie marca, copy, música, ilustrações proprietárias ou uma sequência inteira frame a frame.
 - Antes de animação final, gere **3 direções de storyboard** com hipóteses realmente diferentes.
+- Para motion, cada beat deve declarar **role / buys / hero / entry / exit / handoff**.
+- Construa e valide o **hardest beat first** antes do filme inteiro.
 - Depois da escolha de direção, gere **um still por cena** e corrija composição antes de animar.
 - Durante a revisão, prefira notas específicas de direção: tempo, escala, eixo, corte, câmera, easing, foco e hierarquia. Evite "make it better".
+- Não use page chrome/HUD, contador, kicker, progress bar, card genérico de UI, typing ou glow como preenchimento estético; se aparecerem, precisam de função clara.
 
 ## Fonte da verdade
 
@@ -70,17 +74,18 @@ Não force um renderer só porque está instalado.
 4. Decomponha referências em atributos, não em cópia literal.
 5. Gere 3 storyboards.
 6. Se não houver escolha humana explícita, selecione a direção que melhor satisfaz o brief e registre a justificativa factual em `notes.md`.
-7. Gere stills de todas as cenas.
+7. Gere stills de todas as cenas e o hardest beat primeiro.
 8. Corrija storyboard/composição antes de animar.
 9. Escolha renderer e registre a decisão.
 10. Construa a master.
 11. Gere preview/filmstrip/snapshots adequados ao renderer.
-12. Rode o Creative Critic com `prompts/creative-critic.txt` e corrija flags `block`/`revise` justificadas.
-13. Faça QA visual e comercial.
-14. Aplique notas de direção específicas.
-15. Exporte master.
-16. Só então crie adaptações 9:16, 4:5 e 1:1 e variações de hipótese.
-17. Retenha brief, snapshot, storyboard, stills, projeto/código e notas.
+12. Rode `python scripts/motion_quality.py <preview.mp4> --json-out <motion-qa.json>` em jobs de motion e revise M0–M7 de `docs/TASTE-MOTION-GATES.md`.
+13. Rode o Creative Critic com `prompts/creative-critic.txt` e corrija flags `block`/`revise` justificadas.
+14. Faça QA visual e comercial.
+15. Aplique notas de direção específicas.
+16. Exporte master.
+17. Só então crie adaptações 9:16, 4:5 e 1:1 e variações de hipótese.
+18. Retenha brief, snapshot, storyboard, stills, projeto/código, motion QA e notas.
 
 ## Particularidades por renderer
 
@@ -114,9 +119,9 @@ Quando o projeto puder ser renderizado por HyperFrames ou Remotion em Linux, ele
 - O script deve respeitar `CREATIVE_FORMAT` e `CREATIVE_QUALITY`.
 - O output obrigatório é `.cloud-render/preview.mp4`.
 - Não dependa de Tesseract CLI no GitHub Actions.
-- Não busque assets voláteis durante o render; use mídia congelada/versionada no job.
+- Não busque assets voláteis durante o render; use mídia congelada/versionada no job sempre que possível. Quando a origem oficial só puder ser capturada em runtime, registre URL, timestamp e hash no bundle.
 - Preview prioriza iteração; final só depois dos gates de QA.
-- O workflow deve conseguir gerar poster, filmstrip e metadata sem intervenção manual.
+- O workflow deve conseguir gerar poster, filmstrip, metadata e motion QA sem intervenção manual.
 
 ## Variações
 
