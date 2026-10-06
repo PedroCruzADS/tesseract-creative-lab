@@ -1,0 +1,24 @@
+{
+  "job":"leforzz-premium-motion",
+  "format":"9x16",
+  "duration_seconds":8.5,
+  "directions":[
+    {
+      "id":"A",
+      "name":"Gallery Objects",
+      "hypothesis":"Tratar cada equipamento como objeto de design preserva o posicionamento high-end melhor que uma montagem de e-commerce.",
+      "selected":true,
+      "beats":[
+        {"time":"0.0-2.9","role":"hook","buys":"Le Forzz é cardio premium orientado a experiência","hero":"Runverse","entry":"soft vertical land","exit":"black wipe on motion","handoff":"surface becomes the transition"},
+        {"time":"2.9-5.9","role":"proof","buys":"a marca também aplica tecnologia à musculação","hero":"Konnect Leg Press","entry":"soft vertical land","exit":"black wipe on motion","handoff":"same gallery grammar"},
+        {"time":"5.9-8.5","role":"close","buys":"fixa marca e posicionamento","hero":"official Le Forzz logo","entry":"small scale-down landing","exit":"resolved stillness","handoff":"none"}
+      ]
+    },
+    {
+      "id":"B","name":"Interface Detail","hypothesis":"Focar touchscreen e tecnologia embarcada poderia reforçar inovação.","selected":false,"reason":"Rejeitada para v01: os assets capturados não garantem detalhe de interface suficiente sem inventar UI."
+    },
+    {
+      "id":"C","name":"Family Lineup","hypothesis":"Mostrar três máquinas juntas comunica amplitude de portfólio.","selected":false,"reason":"Rejeitada para v01: enfraquece one-hero-per-frame e aproxima o filme de vitrine/catalogue ad."
+    }
+  ]
+}
