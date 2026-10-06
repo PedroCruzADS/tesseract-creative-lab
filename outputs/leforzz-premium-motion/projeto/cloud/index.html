@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@font-face{font-family:Inter;src:url('./node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:Inter;src:url('./node_modules/@fontsource/inter/files/inter-latin-500-normal.woff2') format('woff2');font-weight:500}
+@font-face{font-family:Inter;src:url('./node_modules/@fontsource/inter/files/inter-latin-600-normal.woff2') format('woff2');font-weight:600}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0a0a0a;font-family:Inter,Arial,sans-serif}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#f2f1ee;color:#111}
+.scene{position:absolute;inset:0;overflow:hidden;opacity:0}
+.paper{background:radial-gradient(900px 720px at 68% 32%,#fff 0%,#f5f4f1 44%,#e8e6e1 100%)}
+.dark{background:radial-gradient(820px 700px at 50% 42%,#222 0%,#0b0b0c 58%,#050506 100%);color:#fff}
+.grain{position:absolute;inset:-20%;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");pointer-events:none}
+.kicker{position:absolute;left:86px;top:120px;font-size:20px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:#656565}
+.title{position:absolute;left:82px;top:170px;font-size:76px;line-height:.95;letter-spacing:-.055em;font-weight:500}
+.sub{position:absolute;left:86px;top:348px;font-size:28px;line-height:1.35;color:#5c5c5c;max-width:720px}
+.hero{position:absolute;left:80px;top:520px;width:920px;height:840px;display:flex;align-items:center;justify-content:center}
+.hero img{max-width:920px;max-height:760px;object-fit:contain;display:block;filter:drop-shadow(0 34px 48px rgba(0,0,0,.16))}
+.line{position:absolute;left:86px;bottom:174px;width:908px;height:1px;background:#c8c6c0;transform-origin:left center}
+.footer{position:absolute;left:86px;bottom:112px;font-size:22px;letter-spacing:.02em;color:#575757}
+.scene2 .hero{top:470px;height:900px}
+.scene2 .title{top:176px}
+.scene2 .sub{top:350px}
+.close-logo{position:absolute;left:170px;top:620px;width:740px;height:200px;display:flex;align-items:center;justify-content:center}
+.close-logo img{max-width:680px;max-height:160px;object-fit:contain;display:block}
+.close-copy{position:absolute;left:120px;top:860px;width:840px;text-align:center;font-size:56px;font-weight:400;letter-spacing:-.035em;line-height:1.05}
+.close-meta{position:absolute;left:160px;top:1055px;width:760px;text-align:center;font-size:20px;letter-spacing:.18em;text-transform:uppercase;color:#8c8c8f}
+.glow{position:absolute;width:560px;height:560px;border-radius:50%;filter:blur(70px);background:#fff;opacity:.035;left:260px;top:500px}
+.wipe{position:absolute;inset:0;background:#0a0a0a;transform-origin:left center;z-index:30;transform:scaleX(0)}
+</style>
+</head>
+<body>
+<div id="stage">
+  <section id="s1" class="scene paper">
+    <div class="grain"></div>
+    <div id="s1k" class="kicker">Le Forzz · Verse</div>
+    <div id="s1t" class="title">Cardio além<br>do físico.</div>
+    <div id="s1s" class="sub">Runverse. Tecnologia, biomecânica e design em equilíbrio.</div>
+    <div id="s1h" class="hero"><img src="assets/runverse.jpg" alt="Runverse Le Forzz"></div>
+    <div id="s1l" class="line"></div>
+    <div class="footer">RUNVERSE</div>
+  </section>
+  <section id="s2" class="scene paper scene2">
+    <div class="grain"></div>
+    <div id="s2k" class="kicker">Le Forzz · Konnect</div>
+    <div id="s2t" class="title">Força com<br>controle absoluto.</div>
+    <div id="s2s" class="sub">Resistência digital. Precisão aplicada ao movimento.</div>
+    <div id="s2h" class="hero"><img src="assets/konnect-leg-press.png" alt="Leg Press Konnect Le Forzz"></div>
+    <div id="s2l" class="line"></div>
+    <div class="footer">KONNECT</div>
+  </section>
+  <section id="s3" class="scene dark">
+    <div class="glow"></div><div class="grain"></div>
+    <div id="logo" class="close-logo"><img src="assets/logo.png" alt="Le Forzz"></div>
+    <div id="closeCopy" class="close-copy">Beyond the physical.</div>
+    <div id="closeMeta" class="close-meta">Performance · Design · Technology</div>
+  </section>
+  <div id="wipe" class="wipe"></div>
+</div>
+<script>
+(()=>{
+  const q=id=>document.getElementById(id);
+  const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+  const out=v=>1-Math.pow(1-clamp(v),4);
+  const inn=v=>Math.pow(clamp(v),3);
+  const s1=q('s1'),s2=q('s2'),s3=q('s3'),wipe=q('wipe');
+  const show=(el,on)=>el.style.opacity=on?'1':'0';
+  const setY=(id,y)=>q(id).style.transform='translateY('+y+'px)';
+  window.seek=t=>{
+    show(s1,t<2.9); show(s2,t>=2.9&&t<5.9); show(s3,t>=5.9);
+    wipe.style.transform='scaleX(0)';
+    if(t<2.9){
+      const p=out(t/.65), drift=clamp((t-.65)/2.25);
+      q('s1h').style.transform='translateY('+(54*(1-p)-9*drift)+'px) scale('+(.965+.035*p)+')';
+      q('s1h').style.opacity=String(clamp(t/.28));
+      setY('s1t',36*(1-out((t-.12)/.55))); q('s1t').style.opacity=String(clamp((t-.08)/.3));
+      setY('s1s',24*(1-out((t-.28)/.55))); q('s1s').style.opacity=String(clamp((t-.25)/.32));
+      q('s1k').style.opacity=String(clamp((t-.18)/.36)); q('s1l').style.transform='scaleX('+out((t-.42)/.62)+')';
+      if(t>2.5) wipe.style.transform='scaleX('+inn((t-2.5)/.4)+')';
+    }
+    if(t>=2.9&&t<5.9){
+      const lt=t-2.9,p=out(lt/.62),drift=clamp((lt-.62)/2.38);
+      q('s2h').style.transform='translateY('+(58*(1-p)-8*drift)+'px) scale('+(.96+.04*p)+')';
+      q('s2h').style.opacity=String(clamp(lt/.28));
+      setY('s2t',34*(1-out((lt-.12)/.5))); q('s2t').style.opacity=String(clamp((lt-.08)/.28));
+      setY('s2s',22*(1-out((lt-.3)/.48))); q('s2s').style.opacity=String(clamp((lt-.27)/.3));
+      q('s2k').style.opacity=String(clamp((lt-.18)/.34)); q('s2l').style.transform='scaleX('+out((lt-.42)/.58)+')';
+      if(lt>2.58) wipe.style.transform='scaleX('+inn((lt-2.58)/.42)+')';
+    }
+    if(t>=5.9){
+      const lt=t-5.9;
+      const lp=out(lt/.72);
+      q('logo').style.opacity=String(clamp(lt/.4)); q('logo').style.transform='translateY('+(42*(1-lp))+'px) scale('+(.96+.04*lp)+')';
+      q('closeCopy').style.opacity=String(clamp((lt-.32)/.45)); setY('closeCopy',28*(1-out((lt-.32)/.6)));
+      q('closeMeta').style.opacity=String(clamp((lt-.75)/.5));
+    }
+  };
+  window.seek(0);
+})();
+</script>
+</body>
+</html>
