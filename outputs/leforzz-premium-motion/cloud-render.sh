@@ -12,6 +12,8 @@ cd "$PROJECT"
 npm install --no-audit --no-fund
 npx playwright install --with-deps chromium
 npm run capture
+rm -rf "$OUT/assets"
+cp -R assets "$OUT/assets"
 cp assets/capture.json "$OUT/asset-capture.json"
 QUALITY="${CREATIVE_QUALITY:-preview}" npm run render
 python "$ROOT/scripts/motion_quality.py" "$OUT/preview.mp4" --json-out "$OUT/motion-qa.json"
