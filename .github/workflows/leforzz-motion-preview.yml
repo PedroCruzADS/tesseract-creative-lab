@@ -53,7 +53,7 @@ jobs:
       - name: Build review bundle
         run: |
           ffmpeg -y -ss 0.6 -i .cloud-render/preview.mp4 -frames:v 1 -q:v 2 .cloud-render/poster.jpg
-          ffmpeg -y -i .cloud-render/preview.mp4 -vf "fps=1.25,scale='min(270,iw)':-2,tile=4x3:padding=8:margin=8" -frames:v 1 -q:v 2 .cloud-render/filmstrip.jpg
+          ffmpeg -y -i .cloud-render/preview.mp4 -vf "fps=1.25,scale='min(216,iw)':-2,tile=5x3:padding=8:margin=8" -frames:v 1 -q:v 2 .cloud-render/filmstrip.jpg
           ffprobe -v error -show_entries format=duration,size -show_entries stream=width,height,r_frame_rate,codec_name -of json .cloud-render/preview.mp4 > .cloud-render/metadata.json
           {
             echo "# Leforzz premium motion"
