@@ -1,58 +1,12 @@
 {
-  "job":"leforzz-premium-motion",
-  "version":"v02",
-  "format":"9x16",
-  "duration_seconds":6.4,
-  "direction":{
-    "id":"A2",
-    "name":"Gallery Objects — material pass",
-    "hypothesis":"Aumentar escala, luz física e transições por oclusão faz o mesmo território aprovado parecer campanha de marca, não catálogo premium.",
-    "selected":true,
-    "beats":[
-      {
-        "time":"0.0-2.42",
-        "role":"hook",
-        "buys":"Runverse posiciona Le Forzz como cardio premium",
-        "hero":"Runverse, ~20% mais dominante que v01",
-        "entry":"soft land + slow camera drift",
-        "motion":"light sweep crosses product material",
-        "exit":"product pushes toward lens while shadow occludes frame",
-        "handoff":"dark occlusion reveals Konnect"
-      },
-      {
-        "time":"2.42-4.95",
-        "role":"proof",
-        "buys":"Konnect prova tecnologia aplicada à força",
-        "hero":"Konnect Leg Press",
-        "entry":"occlusion reveal + soft land",
-        "motion":"slow drift + light sweep + grounded shadow",
-        "exit":"machine moves into foreground occlusion",
-        "handoff":"same moving shadow opens brand close"
-      },
-      {
-        "time":"4.95-6.4",
-        "role":"close",
-        "buys":"fixa a assinatura Le Forzz",
-        "hero":"official Le Forzz logo",
-        "support":"Beyond the physical. + Performance · Design · Technology",
-        "entry":"logo first, tagline 260ms later, descriptor 620ms later",
-        "background":"very subtle equipment silhouette + moving glow",
-        "exit":"resolved short hold",
-        "handoff":"none"
-      }
-    ]
-  },
-  "copy":{
-    "scene_1":{"headline":"Cardio além do físico.","support":"RUNVERSE"},
-    "scene_2":{"headline":"Força com controle absoluto.","support":"KONNECT · RESISTÊNCIA DIGITAL"},
-    "close":{"logo":"official asset","tagline":"Beyond the physical.","descriptor":"Performance · Design · Technology"}
-  },
-  "qa_intent":[
-    "product must dominate type",
-    "no page chrome or decorative UI",
-    "transition must read as part of product/camera motion",
-    "light sweep must reveal material without flare",
-    "close logo must arrive before tagline",
-    "one hero per frame"
-  ]
+ "job":"leforzz-premium-motion","version":"v03","format":"9x16","duration_seconds":11.7,
+ "opening":{"time":"0.0-2.2","role":"manifesto + proof","copy":"Onde performance e tecnologia se encontram.","visual":"merge entre estrutura mecânica Strong e interface/estrutura Konnect; seam refrativo central","footer":["Bodytech","Cia Athletica","NitroGym","Fluminense FC"]},
+ "collections":[
+  {"line":"KONNECT","time":"2.2-4.2","products":["Cadeira Flexora Extensora","Multi Press","Desenvolvimento Ombros"]},
+  {"line":"STRONG","time":"4.2-6.2","products":["Iso Row","Supino Inclinado Iso Lateral","Pullover"]},
+  {"line":"ZENITH","time":"6.2-8.2","products":["Leg Curl","Lat Pull Down","Chest Press"]},
+  {"line":"INTENSITY","time":"8.2-10.2","products":["Vertical Bench","Functional Trainer","Smith"]}
+ ],
+ "close":{"time":"10.2-11.7","hero":"Le Forzz","copy":"Beyond the physical.","descriptor":"Performance · Design · Technology"},
+ "rules":["cada linha é uma carta, não um template idêntico","um produto por vez dentro da carta","produto ocupa o quadro como objeto de design","nomes proprietários das linhas; evitar categorias genéricas","prova social discreta, sem linguagem de clientes/parceiros"]
 }
