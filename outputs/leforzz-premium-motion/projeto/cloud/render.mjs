@@ -8,7 +8,7 @@ const here=dirname(fileURLToPath(import.meta.url));
 const root=resolve(here,'../../../..');
 const out=resolve(root,'.cloud-render');
 const frames=resolve(here,'.frames');
-const fps=30,width=1080,height=1920,duration=6.9,total=Math.round(duration*fps);
+const fps=30,width=1080,height=1920,duration=6.4,total=Math.round(duration*fps);
 const quality=process.env.QUALITY||'preview';
 
 rmSync(frames,{recursive:true,force:true});
