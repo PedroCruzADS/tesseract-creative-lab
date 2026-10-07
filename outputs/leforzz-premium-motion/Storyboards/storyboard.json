@@ -1,0 +1,58 @@
+{
+  "job":"leforzz-premium-motion",
+  "version":"v02",
+  "format":"9x16",
+  "duration_seconds":6.4,
+  "direction":{
+    "id":"A2",
+    "name":"Gallery Objects — material pass",
+    "hypothesis":"Aumentar escala, luz física e transições por oclusão faz o mesmo território aprovado parecer campanha de marca, não catálogo premium.",
+    "selected":true,
+    "beats":[
+      {
+        "time":"0.0-2.42",
+        "role":"hook",
+        "buys":"Runverse posiciona Le Forzz como cardio premium",
+        "hero":"Runverse, ~20% mais dominante que v01",
+        "entry":"soft land + slow camera drift",
+        "motion":"light sweep crosses product material",
+        "exit":"product pushes toward lens while shadow occludes frame",
+        "handoff":"dark occlusion reveals Konnect"
+      },
+      {
+        "time":"2.42-4.95",
+        "role":"proof",
+        "buys":"Konnect prova tecnologia aplicada à força",
+        "hero":"Konnect Leg Press",
+        "entry":"occlusion reveal + soft land",
+        "motion":"slow drift + light sweep + grounded shadow",
+        "exit":"machine moves into foreground occlusion",
+        "handoff":"same moving shadow opens brand close"
+      },
+      {
+        "time":"4.95-6.4",
+        "role":"close",
+        "buys":"fixa a assinatura Le Forzz",
+        "hero":"official Le Forzz logo",
+        "support":"Beyond the physical. + Performance · Design · Technology",
+        "entry":"logo first, tagline 260ms later, descriptor 620ms later",
+        "background":"very subtle equipment silhouette + moving glow",
+        "exit":"resolved short hold",
+        "handoff":"none"
+      }
+    ]
+  },
+  "copy":{
+    "scene_1":{"headline":"Cardio além do físico.","support":"RUNVERSE"},
+    "scene_2":{"headline":"Força com controle absoluto.","support":"KONNECT · RESISTÊNCIA DIGITAL"},
+    "close":{"logo":"official asset","tagline":"Beyond the physical.","descriptor":"Performance · Design · Technology"}
+  },
+  "qa_intent":[
+    "product must dominate type",
+    "no page chrome or decorative UI",
+    "transition must read as part of product/camera motion",
+    "light sweep must reveal material without flare",
+    "close logo must arrive before tagline",
+    "one hero per frame"
+  ]
+}

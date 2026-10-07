@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@font-face{font-family:Inter;src:url('./node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:Inter;src:url('./node_modules/@fontsource/inter/files/inter-latin-500-normal.woff2') format('woff2');font-weight:500}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080809;font-family:Inter,Arial,sans-serif}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#efeeeb;color:#101010}
+.scene{position:absolute;inset:0;overflow:hidden;opacity:0}
+.paper{background:linear-gradient(158deg,#fbfaf7 0%,#efeeea 56%,#dfddd7 100%)}
+.dark{background:radial-gradient(900px 780px at 50% 45%,#1e1e20 0%,#0b0b0c 58%,#050506 100%);color:#fff}
+.grain{position:absolute;inset:-20%;opacity:.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");pointer-events:none}
+.ambient{position:absolute;width:960px;height:1540px;left:-640px;top:170px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.96),rgba(255,255,255,.32) 46%,rgba(255,255,255,0) 76%);filter:blur(24px);opacity:.74}
+.sweep{position:absolute;top:270px;left:-460px;width:320px;height:1280px;transform:rotate(12deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.72),rgba(255,255,255,0));filter:blur(38px);opacity:.0;mix-blend-mode:screen}
+.title{position:absolute;left:82px;top:145px;width:880px;font-size:86px;line-height:.94;letter-spacing:-.062em;font-weight:500}
+.label{position:absolute;left:87px;top:350px;font-size:24px;line-height:1.2;letter-spacing:.065em;color:#565656;font-weight:400}
+.hero{position:absolute;left:-42px;top:454px;width:1164px;height:1010px;display:flex;align-items:center;justify-content:center}
+.hero img{max-width:1140px;max-height:930px;object-fit:contain;display:block;filter:drop-shadow(0 42px 42px rgba(0,0,0,.16))}
+.scene2 .hero{left:-20px;top:455px;width:1120px;height:1010px}
+.scene2 .hero img{max-width:1100px;max-height:910px}
+.floor{position:absolute;left:150px;top:1325px;width:780px;height:72px;border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.16),rgba(0,0,0,0) 72%);filter:blur(13px);opacity:.58}
+.occlusion{position:absolute;top:-140px;left:-420px;width:620px;height:2260px;background:linear-gradient(90deg,#09090a 0%,#141416 72%,rgba(20,20,22,0) 100%);transform:skewX(-7deg) translateX(-900px);z-index:25;filter:blur(.1px)}
+.close-silhouette{position:absolute;left:-70px;top:350px;width:1220px;height:980px;display:flex;align-items:center;justify-content:center;opacity:.055}
+.close-silhouette img{max-width:1180px;max-height:900px;filter:brightness(0) invert(1);object-fit:contain}
+.close-glow{position:absolute;width:740px;height:740px;border-radius:50%;filter:blur(105px);background:#fff;opacity:.04;left:170px;top:470px}
+.close-logo{position:absolute;left:170px;top:635px;width:740px;height:150px;display:flex;align-items:center;justify-content:center}
+.close-logo img{width:520px;height:auto;display:block;filter:brightness(0) invert(1)}
+.close-copy{position:absolute;left:120px;top:872px;width:840px;text-align:center;font-size:58px;font-weight:400;letter-spacing:-.04em;line-height:1.05}
+.close-meta{position:absolute;left:140px;top:1038px;width:800px;text-align:center;font-size:18px;letter-spacing:.17em;text-transform:uppercase;color:#a1a1a4}
+</style>
+</head>
+<body>
+<div id="stage">
+  <section id="s1" class="scene paper">
+    <div id="a1" class="ambient"></div><div id="sw1" class="sweep"></div><div class="grain"></div>
+    <div id="s1t" class="title">Cardio além<br>do físico.</div>
+    <div id="s1l" class="label">RUNVERSE</div>
+    <div id="f1" class="floor"></div>
+    <div id="s1h" class="hero"><img src="assets/runverse-cutout.png" alt="Runverse Le Forzz"></div>
+  </section>
+
+  <section id="s2" class="scene paper scene2">
+    <div id="a2" class="ambient"></div><div id="sw2" class="sweep"></div><div class="grain"></div>
+    <div id="s2t" class="title">Força com<br>controle absoluto.</div>
+    <div id="s2l" class="label">KONNECT · RESISTÊNCIA DIGITAL</div>
+    <div id="f2" class="floor"></div>
+    <div id="s2h" class="hero"><img src="assets/konnect-leg-press-cutout.png" alt="Leg Press Konnect Le Forzz"></div>
+  </section>
+
+  <section id="s3" class="scene dark">
+    <div id="sil" class="close-silhouette"><img src="assets/runverse-cutout.png" alt=""></div>
+    <div id="cg" class="close-glow"></div><div class="grain"></div>
+    <div id="logo" class="close-logo"><img src="assets/logo.svg" alt="Le Forzz"></div>
+    <div id="closeCopy" class="close-copy">Beyond the physical.</div>
+    <div id="closeMeta" class="close-meta">Performance · Design · Technology</div>
+  </section>
+
+  <div id="occ" class="occlusion"></div>
+</div>
+
+<script>
+(()=>{
+  const q=id=>document.getElementById(id);
+  const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+  const out=v=>1-Math.pow(1-clamp(v),4);
+  const inout=v=>{v=clamp(v);return v<.5?4*v*v*v:1-Math.pow(-2*v+2,3)/2};
+  const s1=q('s1'),s2=q('s2'),s3=q('s3'),occ=q('occ');
+  const show=(el,on)=>el.style.opacity=on?'1':'0';
+  const y=(id,n)=>q(id).style.transform='translateY('+n+'px)';
+  const sweep=(id,p)=>{
+    const el=q(id),s=Math.sin(Math.PI*clamp(p));
+    el.style.transform='translateX('+(1500*clamp(p))+'px) rotate(12deg)';
+    el.style.opacity=String(.74*s);
+  };
+
+  window.seek=t=>{
+    show(s1,t<2.62);
+    show(s2,t>=2.42&&t<5.02);
+    show(s3,t>=4.90);
+    occ.style.transform='skewX(-7deg) translateX(-900px)';
+
+    if(t<2.62){
+      const p=out(t/.52),d=clamp((t-.52)/1.90);
+      q('s1h').style.opacity=String(clamp(t/.20));
+      q('s1h').style.transform='translateX('+(-18+34*d)+'px) translateY('+(48*(1-p)-18*d)+'px) scale('+(.94+.12*p+.018*d)+')';
+      q('f1').style.transform='scaleX('+(.84+.16*p)+') translateX('+(10*d)+'px)';
+      q('f1').style.opacity=String(.42+.18*p);
+      y('s1t',32*(1-out((t-.05)/.42))); q('s1t').style.opacity=String(clamp((t-.03)/.23));
+      y('s1l',16*(1-out((t-.24)/.38))); q('s1l').style.opacity=String(clamp((t-.20)/.24));
+      q('a1').style.transform='translateX('+(700*clamp(t/2.45))+'px) scale('+(1+.10*clamp(t/2.45))+')';
+      sweep('sw1',(t-.42)/1.72);
+
+      if(t>=2.34){
+        const tr=inout((t-2.34)/.34);
+        q('s1h').style.transform+=' translateX('+(250*tr)+'px)';
+        occ.style.transform='skewX(-7deg) translateX('+(-900+1130*tr)+'px)';
+      }
+    }
+
+    if(t>=2.42&&t<5.02){
+      const lt=t-2.42,p=out(lt/.48),d=clamp((lt-.48)/1.95);
+      q('s2h').style.opacity=String(clamp((lt-.08)/.20));
+      q('s2h').style.transform='translateX('+(-22+26*d)+'px) translateY('+(48*(1-p)-15*d)+'px) scale('+(.93+.12*p+.018*d)+')';
+      q('f2').style.transform='scaleX('+(.84+.16*p)+') translateX('+(8*d)+'px)';
+      q('f2').style.opacity=String(.40+.18*p);
+      y('s2t',30*(1-out((lt-.09)/.4))); q('s2t').style.opacity=String(clamp((lt-.05)/.23));
+      y('s2l',15*(1-out((lt-.25)/.36))); q('s2l').style.opacity=String(clamp((lt-.21)/.23));
+      q('a2').style.transform='translateX('+(720*clamp(lt/2.45))+'px) scale('+(1+.10*clamp(lt/2.45))+')';
+      sweep('sw2',(lt-.38)/1.74);
+
+      if(lt<.42){
+        const tr=1-inout(lt/.42);
+        occ.style.transform='skewX(-7deg) translateX('+(-900+1130*tr)+'px)';
+      }
+      if(lt>=2.28){
+        const tr=inout((lt-2.28)/.32);
+        q('s2h').style.transform+=' translateX('+(260*tr)+'px)';
+        occ.style.transform='skewX(-7deg) translateX('+(-900+1130*tr)+'px)';
+      }
+    }
+
+    if(t>=4.90){
+      const lt=t-4.90,p=clamp(lt/1.50),lp=out(lt/.42);
+      q('sil').style.opacity=String(.035+.032*Math.sin(Math.PI*clamp(p)));
+      q('sil').style.transform='translateX('+(-34+58*p)+'px) translateY('+(-16*p)+'px) scale('+(1.02+.035*p)+')';
+      q('cg').style.transform='translateX('+(150*p-75)+'px) scale('+(1+.13*p)+')';
+      q('cg').style.opacity=String(.035+.055*Math.sin(Math.PI*Math.min(.94,p)));
+      q('logo').style.opacity=String(clamp(lt/.24));
+      q('logo').style.transform='translateY('+(32*(1-lp)-4*p)+'px) scale('+(.965+.035*lp+.006*p)+')';
+      q('closeCopy').style.opacity=String(clamp((lt-.26)/.28));
+      y('closeCopy',20*(1-out((lt-.26)/.38))-3*p);
+      q('closeMeta').style.opacity=String(clamp((lt-.62)/.28));
+    }
+  };
+  window.seek(0);
+})();
+</script>
+</body>
+</html>

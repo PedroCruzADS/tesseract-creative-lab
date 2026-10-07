@@ -1,0 +1,41 @@
+{
+  "brand": "Le Forzz",
+  "captured_at": "runtime by capture-assets.mjs; URL inventory fixed on 2026-10-06",
+  "official_sources": {
+    "homepage": "https://www.leforzz.com/",
+    "instagram": "https://www.instagram.com/leforzzofficial/"
+  },
+  "assets": [
+    {
+      "id": "logo",
+      "kind": "official homepage SVG",
+      "page": "https://www.leforzz.com/",
+      "url": "https://leforzzfast.vtexassets.com/assets/vtex.file-manager-graphql/images/b06c8cca-c045-4bce-b458-e79d5b4b2b56___789404fe5348f153a3b0f0ce755fbaf9.svg?width=140&aspect=true",
+      "discovered_in": "first cloud capture, 2026-10-06"
+    },
+    {
+      "id": "runverse",
+      "kind": "official product packshot",
+      "page": "https://www.leforzz.com/esteira-ergometrica-le-forzz-runverse-touch-screen-330/p",
+      "url": "https://leforzzfast.vtexassets.com/assets/vtex.file-manager-graphql/images/8d8d63a0-5096-4d00-a37c-ce33fdce01f5___55a44aad14400296204070a4c4db0a6f.jpg?aspect=true&width=600"
+    },
+    {
+      "id": "runverse-hero",
+      "kind": "official product hero",
+      "page": "https://www.leforzz.com/esteira-ergometrica-le-forzz-runverse-touch-screen-330/p",
+      "url": "https://leforzzfast.vtexassets.com/arquivos/ids/158995-1920-auto/topo-desktop2.webp?v=639184414216430000"
+    },
+    {
+      "id": "konnect-leg-press",
+      "kind": "official product packshot",
+      "page": "https://www.leforzz.com/leg-press-digital-touchscreen-10-1-konnect-le-forzz-lfk-b12/p",
+      "url": "https://leforzzfast.vtexassets.com/assets/vtex.file-manager-graphql/images/bfe572b2-4e1a-444d-aca7-67f67bbbf08c___b2bdc0c431ad2b8b964bc86751a9a2e7.png?aspect=true&width=600"
+    },
+    {
+      "id": "konnect-chest-press",
+      "kind": "official product packshot",
+      "page": "https://www.leforzz.com/supino-vertical-digital-unilateral-konnect-le-forzz-lfk-c33/p",
+      "url": "https://leforzzfast.vtexassets.com/assets/vtex.file-manager-graphql/images/d8fe75df-6051-423e-b8bc-3e1a2d75f37a___37e159483c48cee1308128cbeca82c05.png?aspect=true&width=600"
+    }
+  ]
+}

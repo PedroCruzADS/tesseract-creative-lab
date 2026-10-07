@@ -4,6 +4,7 @@ Leia:
 - AGENTS.md
 - docs/WORKFLOW.md
 - docs/MOTION-GRAMMAR.md
+- docs/TASTE-MOTION-GATES.md
 - docs/COPY-GUARDRAILS.md
 - docs/QA-PAID-MEDIA.md
 - docs/COMPOSITION-QA.md
@@ -15,23 +16,25 @@ Não redesenhe a peça inteira por gosto pessoal.
 Não invente produto, benefício, condição, preço ou urgência.
 Não penalize uma escolha apenas por ser simples.
 Diferencie defeito funcional de preferência estética.
+Não transforme os anti-slop gates em um novo house style.
 
 Avalie cada cena e cada transição em:
-1. informação nova;
+1. informação nova / `buys`;
 2. especificidade da copy;
-3. hierarquia;
+3. hierarquia e um-herói-por-frame;
 4. legibilidade mobile;
 5. produto real e integridade;
 6. verdade comercial;
 7. safe areas;
 8. ação primária;
-9. continuidade/shared element;
-10. pacing/hold;
+9. continuidade/shared element/handoff;
+10. pacing/hold/dead time;
 11. câmera;
 12. easing;
-13. risco de template;
-14. CTA;
-15. áudio/SFX quando houver.
+13. risco de template/page chrome;
+14. mundo visual: ground + luz + profundidade/textura;
+15. CTA;
+16. áudio/SFX quando houver.
 
 Flags de copy:
 - generic_copy
@@ -43,6 +46,7 @@ Flags de copy:
 
 Flags de motion:
 - dead_time
+- accidental_freeze
 - competing_actions
 - gratuitous_motion
 - camera_reversal
@@ -51,6 +55,21 @@ Flags de motion:
 - teleport_handoff
 - excessive_bounce
 - product_integrity_risk
+- page_chrome
+- decorative_counter
+- decorative_progress
+- generic_ui_card
+- gratuitous_typing
+- persistent_split_layout
+- flat_world
+- overlong_end_hold
+- multiple_heroes
+
+Anti-slop:
+- marque page chrome/HUD, contador/timecode, progress bar, kicker, generic UI cards, headline typing, "headline esquerda + mídia direita" persistente e efeitos decorativos sem função;
+- não marque esses padrões quando forem parte real do produto/UI ou tiverem função narrativa clara;
+- não reprove stillness deliberada de marca premium apenas por ter pouco movimento;
+- em produto físico, prefira produto verdadeiro e detalhe material a ornamentação genérica.
 
 Saída obrigatória em JSON válido:
 
@@ -61,6 +80,7 @@ Saída obrigatória em JSON válido:
     {
       "scene": "...",
       "time": "...",
+      "gate": "M0|M1|M2|M3|M4|M5|M6|M7",
       "flag": "...",
       "evidence": "...",
       "fix": "..."
@@ -79,6 +99,7 @@ Saída obrigatória em JSON válido:
 Regras:
 - block somente para erro comercial, asset/produto incorreto, corte crítico, quebra técnica ou claim não suportado;
 - revise para problemas reais de direção/legibilidade;
-- pass não significa “perfeito”, significa seguro para próxima etapa;
+- pass não significa "perfeito", significa seguro para próxima etapa;
 - cada crítica deve ser acionável;
-- prefira coordenada, tempo, escala, hold ou texto específico a “melhore”.
+- prefira coordenada, tempo, escala, hold ou texto específico a "melhore";
+- quando M2/M3 automático reportar review, confirme visualmente se é defeito ou stillness intencional documentada.

@@ -1,0 +1,9 @@
+{
+  "slug":"leforzz-premium-motion",
+  "objective":"brand/product motion test",
+  "renderer":"html-playwright-ffmpeg",
+  "formats":["9x16"],
+  "duration_seconds":8.5,
+  "tone":["premium","minimal","precise","quiet"],
+  "constraints":["official product assets only","official logo capture only","no price","no invented commercial condition","simple motion"]
+}

@@ -1,0 +1,81 @@
+name: Leforzz Premium Motion Preview
+
+on:
+  pull_request:
+    paths:
+      - "outputs/leforzz-premium-motion/**"
+      - "scripts/motion_quality.py"
+      - "docs/TASTE-MOTION-GATES.md"
+      - ".github/workflows/leforzz-motion-preview.yml"
+  push:
+    branches: ["main"]
+    paths:
+      - "outputs/leforzz-premium-motion/**"
+      - "scripts/motion_quality.py"
+      - "docs/TASTE-MOTION-GATES.md"
+      - ".github/workflows/leforzz-motion-preview.yml"
+  workflow_dispatch:
+    inputs:
+      quality:
+        description: "Qualidade"
+        required: true
+        default: "preview"
+        type: choice
+        options: ["preview", "final"]
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      CREATIVE_FORMAT: "9x16"
+      CREATIVE_QUALITY: ${{ github.event.inputs.quality || 'preview' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Render + capture official assets + motion QA
+        run: bash outputs/leforzz-premium-motion/cloud-render.sh
+
+      - name: Build review bundle
+        run: |
+          ffmpeg -y -ss 0.6 -i .cloud-render/preview.mp4 -frames:v 1 -q:v 2 .cloud-render/poster.jpg
+          ffmpeg -y -i .cloud-render/preview.mp4 -vf "fps=1.25,scale='min(270,iw)':-2,tile=4x3:padding=8:margin=8" -frames:v 1 -q:v 2 .cloud-render/filmstrip.jpg
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=width,height,r_frame_rate,codec_name -of json .cloud-render/preview.mp4 > .cloud-render/metadata.json
+          {
+            echo "# Leforzz premium motion"
+            echo
+            echo "Official assets captured from Le Forzz sources, rendered at 1080x1920 and checked by motion gates."
+            echo
+            echo '~~~json'
+            cat .cloud-render/motion-qa.json
+            echo '~~~'
+          } > .cloud-render/summary.md
+
+      - name: Job summary
+        if: always()
+        run: cat .cloud-render/summary.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Upload review bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: leforzz-premium-motion-${{ github.event.inputs.quality || 'preview' }}
+          path: .cloud-render/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+          include-hidden-files: true
