@@ -8,9 +8,8 @@ mkdir -p "$OUT"; cd "$PROJECT"
 npm install --no-audit --no-fund
 npx playwright install --with-deps chromium
 npm run capture
-for f in konnect-{1,2,3} strong-{1,2,3} zenith-{1,2,3} intensity-{1,2,3}; do
-  ffmpeg -y -v error -i "assets/$f.source" -vf "format=rgba,colorkey=0xFFFFFF:0.14:0.06" -frames:v 1 "assets/$f-cutout.png"
-done
+ffmpeg -y -v error -i assets/runverse.jpg -vf "format=rgba,colorkey=0xFFFFFF:0.085:0.11" -frames:v 1 assets/runverse-cutout.png
+ffmpeg -y -v error -i assets/konnect-leg-press.png -vf "format=rgba,colorkey=0xFFFFFF:0.075:0.10" -frames:v 1 assets/konnect-leg-press-cutout.png
 rm -rf "$OUT/assets"; cp -R assets "$OUT/assets"; cp assets/capture.json "$OUT/asset-capture.json"
 QUALITY="${CREATIVE_QUALITY:-preview}" npm run render
 python "$ROOT/scripts/motion_quality.py" "$OUT/preview.mp4" --json-out "$OUT/motion-qa.json"

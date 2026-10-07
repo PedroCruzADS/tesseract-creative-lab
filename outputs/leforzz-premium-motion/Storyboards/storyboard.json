@@ -1,12 +1,11 @@
 {
- "job":"leforzz-premium-motion","version":"v03","format":"9x16","duration_seconds":11.7,
- "opening":{"time":"0.0-2.2","role":"manifesto + proof","copy":"Onde performance e tecnologia se encontram.","visual":"merge entre estrutura mecânica Strong e interface/estrutura Konnect; seam refrativo central","footer":["Bodytech","Cia Athletica","NitroGym","Fluminense FC"]},
- "collections":[
-  {"line":"KONNECT","time":"2.2-4.2","products":["Cadeira Flexora Extensora","Multi Press","Desenvolvimento Ombros"]},
-  {"line":"STRONG","time":"4.2-6.2","products":["Iso Row","Supino Inclinado Iso Lateral","Pullover"]},
-  {"line":"ZENITH","time":"6.2-8.2","products":["Leg Curl","Lat Pull Down","Chest Press"]},
-  {"line":"INTENSITY","time":"8.2-10.2","products":["Vertical Bench","Functional Trainer","Smith"]}
+ "job":"leforzz-premium-motion","version":"v02.1-tactile","format":"9x16","duration_seconds":6.4,
+ "direction":{"name":"Gallery Objects — tactile refinement","base":"v02","intent":"preservar a gramática aprovada e aumentar sensação de matéria, contato e precisão sem adicionar informação"},
+ "beats":[
+  {"time":"0.0-2.42","hero":"Runverse","buys":"objeto premium, físico e preciso","motion":"slow camera drift + object-masked specular pass + independent contact shadow","exit":"foreground product occlusion"},
+  {"time":"2.42-4.95","hero":"Konnect Leg Press","buys":"tecnologia aplicada à força, com massa e acabamento","motion":"slow drift + material highlight + grounded shadow","exit":"product-driven occlusion"},
+  {"time":"4.95-6.4","hero":"Le Forzz logo","buys":"assinatura e posicionamento","motion":"subtle silhouette + controlled glow"}
  ],
- "close":{"time":"10.2-11.7","hero":"Le Forzz","copy":"Beyond the physical.","descriptor":"Performance · Design · Technology"},
- "rules":["cada linha é uma carta, não um template idêntico","um produto por vez dentro da carta","produto ocupa o quadro como objeto de design","nomes proprietários das linhas; evitar categorias genéricas","prova social discreta, sem linguagem de clientes/parceiros"]
+ "render_quality":["2x supersampling","Lanczos downsample to 1080x1920","official 1400px packshots","softer alpha key to reduce jagged edges/white halos","CRF 14 preview / 12 final"],
+ "qa_intent":["no jagged product edges","no white fringe from background key","specular light must live on product alpha","contact shadow must feel attached to product","no generic flare","no extra chrome or category montage"]
 }

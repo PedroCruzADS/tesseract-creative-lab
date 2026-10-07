@@ -1,8 +1,16 @@
-# Notes — Leforzz premium motion v03
+# Notes — Leforzz premium motion v02.1 tactile
 
-- Abertura sem produto-carro-chefe: **estrutura física + tecnologia** convergem para a frase “Onde performance e tecnologia se encontram.”
-- Footer de prova social tipográfica: Bodytech, Cia Athletica, NitroGym e Fluminense FC; relações verificadas em comunicação pública Le Forzz.
-- 4 cartas de linha × 3 produtos oficiais: KONNECT, STRONG, ZENITH, INTENSITY.
-- Após o primeiro QA visual, os 12 assets foram **travados em URLs oficiais exatos**; removido fallback DOM que capturou assets incorretos.
-- Produtos passam a ser ampliados além do tamanho intrínseco do packshot, ocupando ~80–90% da área útil; Strong/Intensity recebem halo material discreto para preservar leitura no fundo escuro.
-- Duração: 11,7 s. Sem preço, categorias genéricas, cards de e-commerce ou HUD.
+Esta versão **volta à v02** como direção oficial. A v03 foi rejeitada por transformar os equipamentos em itens de sistema/catálogo e perder tatilidade.
+
+## Refinos
+- Runverse e Konnect ainda maiores, com crop controlado;
+- packshots oficiais solicitados em **1400 px**;
+- render interno em **2160×3840 (2×)** e downsample Lanczos para 1080×1920;
+- CRF mais alto em qualidade (14 preview / 12 final);
+- key do branco mais suave para reduzir serrilhado e halo;
+- highlight especular é mascarado pelo próprio alpha do equipamento;
+- sombra ampla + sombra de contato movem em parallax diferente do produto;
+- transição continua sendo oclusão motivada pelo equipamento;
+- grain reduzido para não destruir microdetalhe.
+
+Critério: a peça precisa parecer **tocável**. Metal, borracha, volume, peso e distância do chão devem ser percebidos antes de qualquer efeito.
