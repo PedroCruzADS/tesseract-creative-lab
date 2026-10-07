@@ -1,62 +1,69 @@
 import {createHash} from 'node:crypto';
-import {mkdirSync, writeFileSync} from 'node:fs';
+import {mkdirSync,writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
+import {chromium} from 'playwright';
 
 const assetsDir=resolve(process.cwd(),'assets');
 mkdirSync(assetsDir,{recursive:true});
+const sha256=buf=>createHash('sha256').update(buf).digest('hex');
 
-const assets=[
-  {
-    id:'logo',
-    file:'logo.svg',
-    source:'https://www.leforzz.com/',
-    url:'https://leforzzfast.vtexassets.com/assets/vtex.file-manager-graphql/images/b06c8cca-c045-4bce-b458-e79d5b4b2b56___789404fe5348f153a3b0f0ce755fbaf9.svg?width=140&aspect=true'
-  },
-  {
-    id:'runverse',
-    file:'runverse.jpg',
-    source:'https://www.leforzz.com/esteira-ergometrica-le-forzz-runverse-touch-screen-330/p',
-    url:'https://leforzzfast.vtexassets.com/assets/vtex.file-manager-graphql/images/8d8d63a0-5096-4d00-a37c-ce33fdce01f5___55a44aad14400296204070a4c4db0a6f.jpg?aspect=true&width=600'
-  },
-  {
-    id:'runverse-hero',
-    file:'runverse-hero.webp',
-    source:'https://www.leforzz.com/esteira-ergometrica-le-forzz-runverse-touch-screen-330/p',
-    url:'https://leforzzfast.vtexassets.com/arquivos/ids/158995-1920-auto/topo-desktop2.webp?v=639184414216430000'
-  },
-  {
-    id:'konnect-leg-press',
-    file:'konnect-leg-press.png',
-    source:'https://www.leforzz.com/leg-press-digital-touchscreen-10-1-konnect-le-forzz-lfk-b12/p',
-    url:'https://leforzzfast.vtexassets.com/assets/vtex.file-manager-graphql/images/bfe572b2-4e1a-444d-aca7-67f67bbbf08c___b2bdc0c431ad2b8b964bc86751a9a2e7.png?aspect=true&width=600'
-  },
-  {
-    id:'konnect-chest-press',
-    file:'konnect-chest-press.png',
-    source:'https://www.leforzz.com/supino-vertical-digital-unilateral-konnect-le-forzz-lfk-c33/p',
-    url:'https://leforzzfast.vtexassets.com/assets/vtex.file-manager-graphql/images/d8fe75df-6051-423e-b8bc-3e1a2d75f37a___37e159483c48cee1308128cbeca82c05.png?aspect=true&width=600'
-  }
+const fixed=[
+ {id:'logo',file:'logo.svg',source:'https://www.leforzz.com/',url:'https://leforzzfast.vtexassets.com/assets/vtex.file-manager-graphql/images/b06c8cca-c045-4bce-b458-e79d5b4b2b56___789404fe5348f153a3b0f0ce755fbaf9.svg?width=140&aspect=true'}
 ];
 
-function sha256(buf){return createHash('sha256').update(buf).digest('hex')}
+const products=[
+ {id:'konnect-1',line:'KONNECT',name:'Cadeira Flexora Extensora',page:'https://www.leforzz.com/cadeira-flexora-extensora-digital-konnect-le-forzz-lfk-b16-1510/p'},
+ {id:'konnect-2',line:'KONNECT',name:'Multi Press',page:'https://www.leforzz.com/multi-press-supino-desenvolvimento-digital-le-forzz-lfk-a01-1518/p'},
+ {id:'konnect-3',line:'KONNECT',name:'Desenvolvimento Ombros',page:'https://www.leforzz.com/desenvolvimento-ombros-digital-unilateral-le-forzz-lfk-c32-1514/p'},
+ {id:'strong-1',line:'STRONG',name:'Iso Row',page:'https://www.leforzz.com/remada-articulada-iso-row-strong-le-forzz-lfs-014-816/p'},
+ {id:'strong-2',line:'STRONG',name:'Supino Reto Deitado',page:'https://www.leforzz.com/supino-reto-deitado-articulado-strong-le-forzz-lfs-018-814/p'},
+ {id:'strong-3',line:'STRONG',name:'Pullover',page:'https://www.leforzz.com/pullover-articulado-strong-le-forzz-lfs-020-817/p'},
+ {id:'zenith-1',line:'ZENITH',name:'Leg Curl',page:'https://www.leforzz.com/cadeira-flexora-le-forzz-zenith-lfz-013-leg-curl-541/p'},
+ {id:'zenith-2',line:'ZENITH',name:'Lat Pull Down',page:'https://www.leforzz.com/puxada-alta-maquina-le-forzz-zenith-lfz-012-lat-pull-down-542/p'},
+ {id:'zenith-3',line:'ZENITH',name:'Chest Press',page:'https://www.leforzz.com/supino-reto-maquina-le-forzz-zenith-lfz-001-chestpress-554/p'},
+ {id:'intensity-1',line:'INTENSITY',name:'Vertical Bench',page:'https://www.leforzz.com/banco-de-desenvolvimento-le-forzz-lfi-025b-vertical-bench-286/p'},
+ {id:'intensity-2',line:'INTENSITY',name:'Functional Trainer',page:'https://www.leforzz.com/crossover-angular-le-forzz-lfi-005a-fuctional-trainer-320/p'},
+ {id:'intensity-3',line:'INTENSITY',name:'Smith',page:'https://www.leforzz.com/smith-le-forzz-lfi-020a-v2-smith-293/p'}
+];
 
-async function download(item){
-  const res=await fetch(item.url,{headers:{'user-agent':'Mozilla/5.0 TesseractCreativeLab/1.0'}});
-  if(!res.ok) throw new Error(`asset ${item.id}: HTTP ${res.status}`);
-  const body=Buffer.from(await res.arrayBuffer());
-  if(body.length<800) throw new Error(`asset ${item.id}: suspiciously small (${body.length} bytes)`);
-  writeFileSync(resolve(assetsDir,item.file),body);
-  return {...item,bytes:body.length,sha256:sha256(body),contentType:res.headers.get('content-type')};
+async function download(url,file,extra={}){
+ const res=await fetch(url,{headers:{'user-agent':'Mozilla/5.0 TesseractCreativeLab/1.0'}});
+ if(!res.ok) throw new Error(`HTTP ${res.status}: ${url}`);
+ const body=Buffer.from(await res.arrayBuffer());
+ if(body.length<800) throw new Error(`Suspicious asset ${url} (${body.length} bytes)`);
+ writeFileSync(resolve(assetsDir,file),body);
+ return {...extra,url,file,bytes:body.length,sha256:sha256(body),contentType:res.headers.get('content-type')};
 }
 
 const captured=[];
-for(const item of assets) captured.push(await download(item));
+for(const item of fixed) captured.push(await download(item.url,item.file,item));
+
+const browser=await chromium.launch({headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:1200}});
+for(const item of products){
+ await page.goto(item.page,{waitUntil:'domcontentloaded',timeout:45000});
+ await page.waitForTimeout(1000);
+ const src=await page.evaluate(()=>{
+   const imgs=[...document.images];
+   const byAlt=imgs.find(i=>(i.alt||'').toLowerCase().includes('imagem do produto'));
+   const candidates=[byAlt,...imgs].filter(Boolean);
+   const pick=candidates.find(i=>{
+     const s=i.currentSrc||i.src||'';
+     return /vtexassets\.com/.test(s) && !/icon|icone|logo/i.test(s);
+   });
+   return pick ? (pick.currentSrc||pick.src) : null;
+ });
+ if(!src) throw new Error(`No product image found: ${item.id} ${item.page}`);
+ captured.push(await download(src,`${item.id}.source`,{...item,source:item.page}));
+}
+await browser.close();
+
 const manifest={
-  capturedAt:new Date().toISOString(),
-  brand:'Le Forzz',
-  officialHomepage:'https://www.leforzz.com/',
-  instagram:'https://www.instagram.com/leforzzofficial/',
-  assets:captured
+ capturedAt:new Date().toISOString(),
+ brand:'Le Forzz',
+ officialHomepage:'https://www.leforzz.com/',
+ partnersUsedAsTypographicProof:['Bodytech','Cia Athletica','NitroGym','Fluminense FC'],
+ products:captured
 };
 writeFileSync(resolve(assetsDir,'capture.json'),JSON.stringify(manifest,null,2));
 console.log(JSON.stringify(manifest,null,2));
